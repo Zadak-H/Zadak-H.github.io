@@ -914,6 +914,10 @@
                 setTimeout(typeWriter, 15 + Math.random() * 30);
             } else {
                 typeWriterElement.innerHTML = textToType + '<span class="text-orange-500 dark:text-green-500 animate-pulse">_</span>';
+                setTimeout(() => {
+                    typeIndex = 0;
+                    typeWriter();
+                }, 20000);
             }
         }
         
