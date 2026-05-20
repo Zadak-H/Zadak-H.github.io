@@ -316,10 +316,11 @@
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="#about" class="nav-link hover-trigger">About</a>
+                <a href="#projects" class="nav-link hover-trigger">Interests</a>
                 <a href="#trajectory" class="nav-link hover-trigger">Trajectory</a>
                 <a href="#publications" class="nav-link hover-trigger">Publications</a>
                 <a href="#skills" class="nav-link hover-trigger">Skills</a>
-                <a href="#sandbox" class="nav-link hover-trigger">Sandbox</a>
+                <a href="#sandbox" class="nav-link hover-trigger">Lab</a>
                 <a href="#contact" class="nav-link hover-trigger">Contact</a>
 
                 <!-- Theme Toggle -->
@@ -423,15 +424,10 @@
                     </h2>
                     <div
                         class="tilt-content space-y-6 text-zinc-700 dark:text-zinc-400 leading-relaxed font-light text-lg transition-colors">
-                        <p>PhD researcher in Informatics at the <strong
+                        <p>PhD Researcher in Informatics at the <strong
                                 class="text-orange-600 dark:text-white font-medium transition-colors">University of
-                                Leipzig</strong>, specializing in Artificial Intelligence for Drug Discovery.</p>
-                        <p>My research integrates deep learning, bioinformatics, and structural biology to design
-                            interpretable models that predict enzyme function, protein stability, and structure-function
-                            relationships.</p>
-                        <p>With expertise in geometric deep learning, molecular simulation, and biomolecular modeling, I
-                            aim to bridge algorithmic innovation and molecular biophysics for predictive, explainable
-                            discovery of therapeutic enzymes and drug targets.</p>
+                                Leipzig</strong>, specializing in Artificial Intelligence for Drug Discovery under the supervision of <strong class="text-orange-600 dark:text-white font-medium transition-colors">Prof. Dr. Jens Meiler</strong> and <strong class="text-orange-600 dark:text-white font-medium transition-colors">Dr. Georg Künze</strong>.</p>
+                        <p>My research integrates deep learning, bioinformatics, and structural biology to design interpretable computational models that predict enzyme function, protein stability, and complex structure-function relationships. Leveraging expertise in geometric deep learning, molecular dynamics simulation, and biomolecular modeling, my work bridges algorithmic innovation and molecular biophysics to enable predictive, explainable discovery of therapeutic enzymes and novel drug targets.</p>
                     </div>
 
                     <div class="flex gap-4 mt-10 tilt-content">
@@ -466,17 +462,171 @@
             </div>
         </section>
 
+        <!-- PROJECTS & INTERESTS -->
+        <section id="projects" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
+            <div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-4">
+                <div>
+                    <h2
+                        class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
+                        02. Ongoing Projects & Interests</h2>
+                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
+                        Interests.</h3>
+                </div>
+                <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Active Research Focus</div>
+            </div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Topic 1 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="dna" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Computational mRNA Therapeutics</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Collaborative Project with BioNTech</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Utilizing multiscale molecular dynamics (MD) simulations to analyze complex interactions between lipid nanoparticles (LNPs) and serum proteins.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Optimizing computational design frameworks to enhance the delivery efficiency and stability of mRNA therapeutics.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 2 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="atom" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Flow Matching & Backmapping</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Deep Learning for Structural Biology</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Developing flow-matching-based deep learning methods to backmap coarse-grained (CG) structures to all-atom (AA) resolutions.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Enabling high-fidelity structural reconstruction across diverse biomolecules, including lipids, proteins, DNA, and sugars.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 3 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="cpu" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">MD Surrogate Modeling</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Physics-Aware Architecture Search</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Designing a staged, physics-aware architecture search and optimization framework to serve as a surrogate model for molecular dynamics.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Accelerating simulation workflows by embedding physical constraints directly into neural network architectures.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 4 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">SE(3) Diffusion World Models</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Protein Conformational Dynamics</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Engineering a reference-conditioned SE(3) diffusion world model to learn and predict local protein conformational dynamics.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Generating accurate rollouts of complex structural transitions directly from raw molecular dynamics trajectories.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 5 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="recycle" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">ML-Assisted Directed Evolution</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Plastic-Degrading Enzymes</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Developing MLDE models to predict and optimize the correlation between catalytic activity and thermal stability for PHL7 enzyme variants.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Engineering fitness functions that improve the alignment between in silico sequence predictions and experimental wet-lab outcomes.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 6 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="flask-conical" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Deeplearning-Based Protein Design</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">pH-Dependent Sequence Generation</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Designing an Equivariant Graph Neural Network (EGNN) pipeline to generate de novo protein sequences conditioned on specific pH optimum requirements.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Enabling conditional sequence generation for tailoring therapeutic enzymes and biocatalysts to precise industrial and physiological pH microenvironments.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- TRAJECTORY -->
         <section id="trajectory" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
             <div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
-                        02. Experience & Education</h2>
+                        03. Experience & Education</h2>
                     <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
                         Trajectory.</h3>
                 </div>
-                <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Interactive Nodes</div>
+                <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Academic & Career Journey</div>
             </div>
 
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 relative">
@@ -587,7 +737,7 @@
             <div class="max-w-7xl mx-auto mb-20">
                 <h2
                     class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
-                    03. Selected Works</h2>
+                    04. Selected Works</h2>
                 <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
                     Publications.</h3>
             </div>
@@ -663,6 +813,31 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Conf 2 -->
+                <a href="https://doi.org/10.1109/SILCON55242.2022.10028828" target="_blank"
+                    class="block group hover-trigger glass-panel p-6 md:p-8 transition-all duration-300">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-grow">
+                            <h4
+                                class="text-xl font-medium text-zinc-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-zinc-200 transition-colors">
+                                Overlapped Fingerprint Separation Using Graph-Based Model</h4>
+                            <p class="text-sm text-zinc-600 dark:text-zinc-500 font-light transition-colors">S. Sen, S. Sonali, <strong
+                                    class="text-orange-600 dark:text-zinc-300 font-medium transition-colors">R.
+                                    SinhaRoy</strong> et al. &bull; <span
+                                    class="italic text-zinc-500 dark:text-zinc-400">IEEE SILCON (2022)</span></p>
+                        </div>
+                        <div class="flex items-center gap-4 flex-shrink-0">
+                            <span
+                                class="text-xs font-mono text-orange-600 dark:text-zinc-400 bg-orange-50 dark:bg-white/5 border border-orange-200 dark:border-white/10 px-3 py-1.5 rounded-full group-hover:border-orange-400 dark:group-hover:border-white/30 transition-colors">Conference</span>
+                            <div
+                                class="w-10 h-10 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                                <i data-lucide="arrow-right"
+                                    class="w-4 h-4 text-orange-400 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors transform group-hover:translate-x-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -672,14 +847,78 @@
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
-                        04. Capabilities</h2>
-                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">Tech
-                        Stack.</h3>
+                        05. Capabilities</h2>
+                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">Technical
+                        Skills.</h3>
                 </div>
             </div>
 
-            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6" id="skill-grid">
-                <!-- Skills generated via JS for interactive hover effect -->
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="network" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Deep Learning & Generative AI</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            Transformers, Diffusion Models, SE(3) World Models, Flow Matching, Agentic AI Architectures, State Space Models (SSMs / Mamba), Graph Neural Networks (GNNs).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="box" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">AI Frameworks & Libraries</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            PyTorch, TensorFlow, Jax, PyTorch Geometric, Hugging Face.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="dna" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Structural Biology & AI Tools</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            AlphaFold (2/3), RFDiffusion, ProteinMPNN, ESMFold, ChimeraX.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="activity" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">MD & Physics Simulation</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            GROMACS, Martini Coarse-Grained Force Field, MDAnalysis, MDTraj, BioPython, All-Atom & Coarse-Grained Backmapping.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category 5 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="terminal" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Languages & Core Tech</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            Python, C/C++, SQL, MATLAB, Bash, Git / CI-CD.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Category 6 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content">
+                        <i data-lucide="microscope" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
+                        <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Domain Expertise</h4>
+                        <p class="text-sm text-zinc-600 dark:text-zinc-500 leading-relaxed font-light transition-colors">
+                            Computational Biology, Structural Bioinformatics, Molecular Dynamics (MD) Surrogate Modeling, Data Mining.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -689,12 +928,12 @@
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
-                        05. Neural Sandbox</h2>
+                        06. In-Silico Laboratory</h2>
                     <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
-                        Interactive Module.</h3>
+                        Molecular Sandbox.</h3>
                 </div>
-                <p class="text-sm text-orange-600 dark:text-zinc-500 font-mono transition-colors">Click to spawn. Drag
-                    to interact.</p>
+                <p class="text-sm text-orange-600 dark:text-zinc-500 font-mono transition-colors">Click to spawn atoms. Drag
+                    to simulate interactions.</p>
             </div>
 
             <div class="max-w-7xl mx-auto glass-panel p-2 relative overflow-hidden rounded-3xl h-[500px] border border-orange-200 dark:border-white/10 hover-trigger group"
@@ -704,9 +943,9 @@
 
                 <div
                     class="absolute top-8 left-8 text-xs font-mono text-orange-600 dark:text-zinc-400 pointer-events-none transition-colors">
-                    SYSTEM STATUS: ONLINE <br>
-                    ACTIVE NODES: <span id="node-count" class="text-zinc-900 dark:text-white font-bold">0</span> <br>
-                    BONDED EDGES: <span id="bond-count" class="text-zinc-900 dark:text-white font-bold">0</span>
+                    MD SIMULATION: ONLINE <br>
+                    ACTIVE ATOMS: <span id="node-count" class="text-zinc-900 dark:text-white font-bold">0</span> <br>
+                    CHEMICAL BONDS: <span id="bond-count" class="text-zinc-900 dark:text-white font-bold">0</span>
                 </div>
 
                 <button id="clear-sandbox"
@@ -716,7 +955,7 @@
 
                 <div
                     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-200 dark:text-white/5 font-bold text-8xl tracking-tighter pointer-events-none select-none z-[-1] transition-colors">
-                    GNN
+                    SE(3)
                 </div>
             </div>
         </section>
@@ -768,7 +1007,7 @@
     <footer
         class="py-10 border-t border-orange-200 dark:border-white/5 text-center relative z-10 bg-white/80 dark:bg-black/50 backdrop-blur-sm transition-colors">
         <p class="text-xs font-mono text-orange-600 dark:text-zinc-600 transition-colors">
-            &copy; 2026 Rajarshi Sinha Roy
+            &copy; 2026 Rajarshi Sinha Roy &bull; Copyright by Rajarshi SinhaRoy
         </p>
     </footer>
 
@@ -947,20 +1186,7 @@
         addLog(); addLog();
         setInterval(addLog, 2500 + Math.random() * 2000);
 
-        // 6. Generate Skills Grid
-        const skillsData = [
-            "Python", "PyTorch", "TensorFlow", "GNNs",
-            "RFDiffusion", "ProteinMPNN", "AlphaFold", "GROMACS",
-            "C/C++", "SQL", "MATLAB", "PHP",
-            "Computational Biology", "Bioinformatics", "Data Mining", "Molecular Dynamics"
-        ];
-        const skillGrid = document.getElementById('skill-grid');
-        skillsData.forEach(skill => {
-            const div = document.createElement('div');
-            div.className = 'glass-panel p-6 text-center text-sm font-semibold text-zinc-700 dark:text-zinc-300 font-mono cursor-none transition-all duration-300 hover:text-white dark:hover:text-white hover:border-orange-600 dark:hover:border-white/30 hover:bg-orange-500 dark:hover:bg-white/10 tilt-card hover-trigger shadow-sm';
-            div.innerHTML = `<div class="tilt-content">${skill}</div>`;
-            skillGrid.appendChild(div);
-        });
+        // 6. Skills Grid is now static HTML
 
         // 7. Interactive Neural Sandbox Game
         const sandboxCanvas = document.getElementById('sandbox-canvas');
