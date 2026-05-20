@@ -82,7 +82,7 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             margin: 0;
-            cursor: none;
+            cursor: auto;
             -webkit-font-smoothing: antialiased;
             transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
         }
@@ -90,7 +90,7 @@
         a,
         button,
         input {
-            cursor: none;
+            cursor: auto;
         }
 
         @media (max-width: 768px) {
@@ -110,6 +110,7 @@
 
         /* Custom Cursor */
         .cursor-dot {
+            display: none !important;
             width: 6px;
             height: 6px;
             background-color: var(--cursor-dot);
@@ -124,6 +125,7 @@
         }
 
         .cursor-outline {
+            display: none !important;
             width: 40px;
             height: 40px;
             border: 1px solid var(--cursor-outline);
@@ -179,7 +181,8 @@
         }
 
         .magnetic {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
         }
 
         @keyframes float {
@@ -198,6 +201,82 @@
 
         .floating {
             animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-portrait-stage {
+            min-height: 22rem;
+            isolation: isolate;
+        }
+
+        .hero-photo-wrap {
+            flex: 0 0 auto;
+        }
+
+        #hero-3d {
+            filter: drop-shadow(0 22px 55px rgba(234, 88, 12, 0.2));
+            mix-blend-mode: normal;
+        }
+
+        .dark #hero-3d {
+            filter: drop-shadow(0 20px 55px rgba(251, 146, 60, 0.18));
+            mix-blend-mode: normal;
+        }
+
+        #hero-3d canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        #bio-typewriter {
+            min-height: 16rem;
+        }
+
+        #bio-typewriter p {
+            margin: 0 0 1rem;
+        }
+
+        #bio-typewriter p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .bio-type-cursor {
+            display: inline-block;
+            margin-left: 0.15rem;
+            color: #f97316;
+            animation: cursorBlink 0.8s steps(2, start) infinite;
+        }
+
+        .dark .bio-type-cursor {
+            color: #d4d4d8;
+        }
+
+        @keyframes cursorBlink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .linkedin-button {
+            padding-left: 1rem;
+        }
+
+        .linkedin-icon-box {
+            width: 1.9rem;
+            height: 1.9rem;
+            border-radius: 9999px;
+            background: #0a66c2;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px rgba(10, 102, 194, 0.22);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .linkedin-button:hover .linkedin-icon-box {
+            transform: translateX(-2px) scale(1.06);
+            box-shadow: 0 14px 30px rgba(10, 102, 194, 0.34);
         }
 
         /* Terminal Logging Animation with Scanline */
@@ -316,11 +395,10 @@
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="#about" class="nav-link hover-trigger">About</a>
-                <a href="#projects" class="nav-link hover-trigger">Interests</a>
+                <a href="#projects" class="nav-link hover-trigger">Projects</a>
                 <a href="#trajectory" class="nav-link hover-trigger">Trajectory</a>
                 <a href="#publications" class="nav-link hover-trigger">Publications</a>
                 <a href="#skills" class="nav-link hover-trigger">Skills</a>
-                <a href="#sandbox" class="nav-link hover-trigger">Lab</a>
                 <a href="#contact" class="nav-link hover-trigger">Contact</a>
 
                 <!-- Theme Toggle -->
@@ -347,7 +425,7 @@
         <!-- HERO SECTION -->
         <section id="hero" class="min-h-screen flex flex-col justify-center px-6 md:px-20 lg:px-40 relative z-10 pt-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto w-full">
-                <div class="order-2 lg:order-1">
+                <div class="hero-copy order-2 lg:order-1">
                     <div
                         class="inline-flex items-center gap-2 px-3 py-1 border border-orange-200 dark:border-white/20 rounded-full text-xs font-mono text-orange-700 dark:text-zinc-400 mb-6 bg-orange-50 dark:bg-white/5 transition-colors">
                         <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse transition-colors"></span>
@@ -356,16 +434,20 @@
 
                     <h1
                         class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 leading-[1.1] transition-colors">
-                        Rajarshi<br><span class="text-orange-600 dark:text-zinc-500 transition-colors">Sinha Roy.</span>
+                        Rajarshi<br><span class="text-orange-600 dark:text-zinc-500 transition-colors">Sinha Roy</span>
                     </h1>
 
-                    <p id="hero-desc"
-                        class="text-lg md:text-xl text-zinc-700 dark:text-zinc-400 mb-10 max-w-lg leading-relaxed font-light transition-colors min-h-[5rem] md:min-h-[4rem]">
-                        <!-- JS injected typewriter -->
-                    </p>
+                    <div class="text-zinc-700 dark:text-zinc-400 mb-10 max-w-xl leading-relaxed font-light text-base md:text-lg transition-colors space-y-4">
+                        <div id="bio-typewriter" class="min-h-[120px]"><span id="bio-cursor" class="text-orange-500 dark:text-zinc-500 animate-pulse">|</span></div>
+                    </div>
+                    <!-- Hidden source for typewriter content -->
+                    <template id="bio-source">
+                        <p class="text-zinc-700 dark:text-zinc-400 leading-relaxed font-light text-base md:text-lg transition-colors">PhD Researcher in Informatics at the <a href="https://www.uni-leipzig.de/" target="_blank" rel="noopener noreferrer" class="text-orange-600 dark:text-white font-medium transition-colors hover:underline"><strong>University of Leipzig</strong></a>, specializing in Artificial Intelligence for Drug Discovery under the supervision of <a href="https://meilerlab.org/" target="_blank" rel="noopener noreferrer" class="text-orange-600 dark:text-white font-medium transition-colors hover:underline"><strong>Prof. Dr. Jens Meiler</strong></a> and <a href="https://kuenzelab.org/" target="_blank" rel="noopener noreferrer" class="text-orange-600 dark:text-white font-medium transition-colors hover:underline"><strong>Dr. Georg Künze</strong></a>.</p>
+                        <p class="text-zinc-700 dark:text-zinc-400 leading-relaxed font-light text-base md:text-lg transition-colors">My research integrates deep learning, bioinformatics, and structural biology to design interpretable computational models that predict enzyme function, protein stability, and complex structure-function relationships. Leveraging expertise in geometric deep learning, molecular dynamics simulation, and biomolecular modeling, my work bridges algorithmic innovation and molecular biophysics to enable predictive, explainable discovery of therapeutic enzymes and novel drug targets.</p>
+                    </template>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="#about"
+                        <a href="#projects"
                             class="magnetic hover-trigger px-8 py-4 bg-orange-600 text-white dark:bg-white dark:text-black rounded-full font-medium text-sm hover:bg-orange-700 dark:hover:bg-zinc-200 transition-colors flex items-center gap-2 shadow-lg shadow-orange-500/30 dark:shadow-none">
                             Explore Work <i data-lucide="arrow-down" class="w-4 h-4"></i>
                         </a>
@@ -383,21 +465,31 @@
                                 <path d="M9 18c-4.51 2-5-2-7-2" />
                             </svg> GitHub
                         </a>
+                        <a href="https://www.linkedin.com/in/rajarshi-sinharoy" target="_blank" rel="noopener noreferrer" aria-label="Open Rajarshi Sinha Roy on LinkedIn" class="linkedin-button magnetic hover-trigger px-8 py-4 border border-zinc-200 dark:border-white/10 text-blue-600 rounded-full font-medium text-sm hover:bg-blue-50 dark:hover:bg-white/5 transition-colors flex items-center gap-3">
+                            <span class="linkedin-icon-box" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                </svg>
+                            </span>
+                            <span>LinkedIn</span>
+                        </a>
                     </div>
                 </div>
 
-                <div class="order-1 lg:order-2 flex justify-center lg:justify-end relative floating">
-                    <!-- Dynamic 3D Hero Background -->
-                    <div id="hero-3d"
-                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] z-[-1] pointer-events-none opacity-40 dark:opacity-70 transition-opacity">
-                    </div>
+                <div class="hero-portrait-stage order-1 lg:order-2 flex justify-center lg:justify-end relative floating hover-trigger">
+                    <div class="hero-photo-wrap relative w-80 h-80 md:w-[26rem] md:h-[26rem]">
+                        <!-- Dynamic 3D Hero Background -->
+                        <div id="hero-3d" aria-hidden="true"
+                            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[230%] h-[230%] z-0 pointer-events-none opacity-80 dark:opacity-90 transition-opacity">
+                        </div>
 
-                    <!-- Photo Card with 3D Tilt -->
-                    <div
-                        class="w-64 h-64 md:w-80 md:h-80 rounded-2xl md:rounded-full overflow-hidden border-4 border-white dark:border-zinc-900 tilt-card relative shadow-2xl shadow-orange-500/20 dark:shadow-[0_0_50px_rgba(255,255,255,0.05)] cursor-none transition-colors">
-                        <img src="profile.jpg" alt="Rajarshi Sinha Roy"
-                            class="w-full h-full object-cover transition-all duration-700 tilt-content"
-                            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'">
+                        <!-- Photo Card with 3D Tilt -->
+                        <div
+                            class="w-full h-full rounded-2xl md:rounded-full overflow-hidden border-4 border-white dark:border-zinc-900 tilt-card relative z-10 shadow-2xl shadow-orange-500/20 dark:shadow-[0_0_50px_rgba(255,255,255,0.05)] transition-colors">
+                            <img src="profile.jpg" alt="Rajarshi Sinha Roy"
+                                class="w-full h-full object-cover transition-all duration-700 tilt-content"
+                                onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -411,66 +503,18 @@
             </div>
         </section>
 
-        <!-- ABOUT & LOGS -->
-        <section id="about" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Profile Text -->
-                <div class="lg:col-span-2 glass-panel p-10 tilt-card group">
-                    <h2
-                        class="text-2xl font-semibold text-zinc-900 dark:text-white mb-8 tilt-content flex items-center gap-3 transition-colors">
-                        <i data-lucide="microscope"
-                            class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
-                        Research Profile
-                    </h2>
-                    <div
-                        class="tilt-content space-y-6 text-zinc-700 dark:text-zinc-400 leading-relaxed font-light text-lg transition-colors">
-                        <p>PhD Researcher in Informatics at the <strong
-                                class="text-orange-600 dark:text-white font-medium transition-colors">University of
-                                Leipzig</strong>, specializing in Artificial Intelligence for Drug Discovery under the supervision of <strong class="text-orange-600 dark:text-white font-medium transition-colors">Prof. Dr. Jens Meiler</strong> and <strong class="text-orange-600 dark:text-white font-medium transition-colors">Dr. Georg Künze</strong>.</p>
-                        <p>My research integrates deep learning, bioinformatics, and structural biology to design interpretable computational models that predict enzyme function, protein stability, and complex structure-function relationships. Leveraging expertise in geometric deep learning, molecular dynamics simulation, and biomolecular modeling, my work bridges algorithmic innovation and molecular biophysics to enable predictive, explainable discovery of therapeutic enzymes and novel drug targets.</p>
-                    </div>
+        <!-- LOGS WIDGET -->
 
-                    <div class="flex gap-4 mt-10 tilt-content">
-                        <a href="https://github.com/Zadak-H" target="_blank"
-                            class="hover-trigger p-3 border border-orange-300 dark:border-white/10 rounded-full hover:bg-orange-600 hover:border-orange-600 dark:hover:bg-white text-orange-600 dark:text-zinc-400 hover:text-white dark:hover:text-black transition-all magnetic">
-                            <i data-lucide="github" class="w-5 h-5"></i>
-                        </a>
-                        <a href="#" target="_blank"
-                            class="hover-trigger p-3 border border-orange-300 dark:border-white/10 rounded-full hover:bg-orange-600 hover:border-orange-600 dark:hover:bg-white text-orange-600 dark:text-zinc-400 hover:text-white dark:hover:text-black transition-all magnetic">
-                            <i data-lucide="linkedin" class="w-5 h-5"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Terminal Logs Interactive Widget -->
-                <div
-                    class="glass-panel p-8 tilt-card flex flex-col justify-end relative overflow-hidden h-full min-h-[300px]">
-                    <div
-                        class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-400 dark:via-white/20 to-transparent transition-colors">
-                    </div>
-                    <div class="tilt-content h-full flex flex-col relative z-10">
-                        <h3
-                            class="text-xs font-mono text-orange-600 dark:text-zinc-500 mb-6 flex items-center gap-2 transition-colors">
-                            <i data-lucide="terminal" class="w-4 h-4"></i> SYS_LOGS
-                        </h3>
-                        <div id="terminal-logs"
-                            class="terminal-container flex flex-col justify-end flex-grow gap-2 overflow-hidden p-3 border border-orange-200 dark:border-white/10 shadow-inner">
-                            <!-- Logs injected via JS -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- PROJECTS & INTERESTS -->
-        <section id="projects" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-4">
+        <section id="projects" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+            <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                         02. Ongoing Projects & Interests</h2>
                     <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
-                        Interests.</h3>
+                        Projects.</h3>
                 </div>
                 <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Active Research Focus</div>
             </div>
@@ -488,11 +532,11 @@
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Utilizing multiscale molecular dynamics (MD) simulations to analyze complex interactions between lipid nanoparticles (LNPs) and serum proteins.</span>
+                                    <span>Utilized multiscale molecular dynamics (MD) simulations to analyze complex interactions between lipid nanoparticles (LNPs) and serum proteins.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Optimizing computational design frameworks to enhance the delivery efficiency and stability of mRNA therapeutics.</span>
+                                    <span>Optimized computational design frameworks to enhance the delivery efficiency and stability of mRNA therapeutics.</span>
                                 </li>
                             </ul>
                         </div>
@@ -500,75 +544,6 @@
                 </div>
 
                 <!-- Topic 2 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
-                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
-                            <i data-lucide="atom" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
-                        </div>
-                        <div class="flex-grow">
-                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Flow Matching & Backmapping</h4>
-                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Deep Learning for Structural Biology</p>
-                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Developing flow-matching-based deep learning methods to backmap coarse-grained (CG) structures to all-atom (AA) resolutions.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Enabling high-fidelity structural reconstruction across diverse biomolecules, including lipids, proteins, DNA, and sugars.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Topic 3 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
-                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
-                            <i data-lucide="cpu" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
-                        </div>
-                        <div class="flex-grow">
-                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">MD Surrogate Modeling</h4>
-                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Physics-Aware Architecture Search</p>
-                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Designing a staged, physics-aware architecture search and optimization framework to serve as a surrogate model for molecular dynamics.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Accelerating simulation workflows by embedding physical constraints directly into neural network architectures.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Topic 4 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
-                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
-                            <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
-                        </div>
-                        <div class="flex-grow">
-                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">SE(3) Diffusion World Models</h4>
-                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Protein Conformational Dynamics</p>
-                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Engineering a reference-conditioned SE(3) diffusion world model to learn and predict local protein conformational dynamics.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Generating accurate rollouts of complex structural transitions directly from raw molecular dynamics trajectories.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Topic 5 -->
                 <div class="glass-panel p-8 tilt-card group">
                     <div class="tilt-content flex gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
@@ -580,11 +555,80 @@
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Developing MLDE models to predict and optimize the correlation between catalytic activity and thermal stability for PHL7 enzyme variants.</span>
+                                    <span>Developed MLDE models to predict and optimize the correlation between catalytic activity and thermal stability for PHL7 enzyme variants.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Engineering fitness functions that improve the alignment between in silico sequence predictions and experimental wet-lab outcomes.</span>
+                                    <span>Engineered fitness functions that improved the alignment between in silico sequence predictions and experimental wet-lab outcomes.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 3 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="atom" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Flow Matching & Backmapping</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Deep Learning for Structural Biology</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Developed flow-matching-based deep learning methods to backmap coarse-grained (CG) structures to all-atom (AA) resolutions.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Enabled high-fidelity structural reconstruction across diverse biomolecules, including lipids, proteins, DNA, and sugars.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 4 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="cpu" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">MD Surrogate Modeling</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Physics-Aware Architecture Search</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Designed a staged, physics-aware architecture search and optimization framework to serve as a surrogate model for molecular dynamics.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Accelerated simulation workflows by embedding physical constraints directly into neural network architectures.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 5 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">SE(3) Diffusion World Models</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Protein Conformational Dynamics</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Engineered a reference-conditioned SE(3) diffusion world model to learn and predict local protein conformational dynamics.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Generated accurate rollouts of complex structural transitions directly from raw molecular dynamics trajectories.</span>
                                 </li>
                             </ul>
                         </div>
@@ -603,11 +647,11 @@
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Designing an Equivariant Graph Neural Network (EGNN) pipeline to generate de novo protein sequences conditioned on specific pH optimum requirements.</span>
+                                    <span>Designed an Equivariant Graph Neural Network (EGNN) pipeline to generate de novo protein sequences conditioned on specific pH optimum requirements.</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Enabling conditional sequence generation for tailoring therapeutic enzymes and biocatalysts to precise industrial and physiological pH microenvironments.</span>
+                                    <span>Enabled conditional sequence generation for tailoring therapeutic enzymes and biocatalysts to precise industrial and physiological pH microenvironments.</span>
                                 </li>
                             </ul>
                         </div>
@@ -617,8 +661,8 @@
         </section>
 
         <!-- TRAJECTORY -->
-        <section id="trajectory" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-4">
+        <section id="trajectory" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+            <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
@@ -733,8 +777,8 @@
         </section>
 
         <!-- PUBLICATIONS -->
-        <section id="publications" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto mb-20">
+        <section id="publications" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+            <div class="max-w-7xl mx-auto mb-12">
                 <h2
                     class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                     04. Selected Works</h2>
@@ -842,8 +886,8 @@
         </section>
 
         <!-- SKILLS MATRIX -->
-        <section id="skills" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto mb-20 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+        <section id="skills" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+            <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
@@ -929,46 +973,10 @@
             </div>
         </section>
 
-        <!-- INTERACTIVE SANDBOX GAME -->
-        <section id="sandbox" class="py-32 px-6 md:px-20 lg:px-40 relative z-10">
-            <div class="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
-                <div>
-                    <h2
-                        class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
-                        06. In-Silico Laboratory</h2>
-                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
-                        Molecular Sandbox.</h3>
-                </div>
-                <p class="text-sm text-orange-600 dark:text-zinc-500 font-mono transition-colors">Click to spawn atoms. Drag
-                    to simulate interactions.</p>
-            </div>
 
-            <div class="max-w-7xl mx-auto glass-panel p-2 relative overflow-hidden rounded-3xl h-[500px] border border-orange-200 dark:border-white/10 hover-trigger group"
-                style="cursor: none;">
-                <canvas id="sandbox-canvas"
-                    class="w-full h-full rounded-2xl bg-orange-50/50 dark:bg-transparent"></canvas>
-
-                <div
-                    class="absolute top-8 left-8 text-xs font-mono text-orange-600 dark:text-zinc-400 pointer-events-none transition-colors">
-                    MD SIMULATION: ONLINE <br>
-                    ACTIVE ATOMS: <span id="node-count" class="text-zinc-900 dark:text-white font-bold">0</span> <br>
-                    CHEMICAL BONDS: <span id="bond-count" class="text-zinc-900 dark:text-white font-bold">0</span>
-                </div>
-
-                <button id="clear-sandbox"
-                    class="absolute bottom-8 right-8 px-6 py-3 bg-orange-100 dark:bg-white/10 text-orange-700 dark:text-white rounded-full text-xs font-mono font-bold hover:bg-orange-200 dark:hover:bg-white/20 transition-colors z-10 shadow-md">
-                    RESET SYSTEM
-                </button>
-
-                <div
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-orange-200 dark:text-white/5 font-bold text-8xl tracking-tighter pointer-events-none select-none z-[-1] transition-colors">
-                    SANDBOX
-                </div>
-            </div>
-        </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="py-32 px-6 md:px-20 lg:px-40 text-center relative z-10">
+        <section id="contact" class="py-24 px-6 md:px-20 lg:px-40 text-center relative z-10">
             <div
                 class="inline-block glass-panel p-16 tilt-card relative overflow-hidden w-full max-w-3xl mx-auto border-t-4 border-t-orange-500 dark:border-t-white/50">
                 <div
@@ -1037,39 +1045,10 @@
             });
         });
 
-        // 1. Custom Cursor with Particle Trails
+        // 1. Mouse position drives subtle background/hero reactions.
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         const trailParticles = [];
-
-        window.addEventListener('mousemove', e => {
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-            cursorOutline.animate({
-                left: e.clientX + 'px',
-                top: e.clientY + 'px'
-            }, { duration: 400, fill: "forwards" });
-
-            // Add trailing particles on mouse move
-            if (Math.random() > 0.5) {
-                trailParticles.push({ x: e.clientX, y: e.clientY, life: 1 });
-            }
-        });
-
-        document.querySelectorAll('a, button, .hover-trigger, .magnetic').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                const isDark = document.documentElement.classList.contains('dark');
-                cursorOutline.style.width = '60px'; cursorOutline.style.height = '60px';
-                cursorOutline.style.backgroundColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(234, 88, 12, 0.1)';
-                cursorOutline.style.borderColor = isDark ? 'rgba(255,255,255,0.8)' : 'rgba(234, 88, 12, 0.8)';
-            });
-            el.addEventListener('mouseleave', () => {
-                const isDark = document.documentElement.classList.contains('dark');
-                cursorOutline.style.width = '40px'; cursorOutline.style.height = '40px';
-                cursorOutline.style.backgroundColor = 'transparent';
-                cursorOutline.style.borderColor = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(234, 88, 12, 0.4)';
-            });
-        });
 
         // 2. Main Background Grid + Cursor Trails
         const canvas = document.getElementById('grid-canvas');
@@ -1094,10 +1073,428 @@
         const mouse = { x: -1000, y: -1000 };
         window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
+        const ambientEquations = [
+            "Attention(Q,K,V)=softmax(QK^T/sqrt(d_k))V",
+            "World model: z_{t+1}=f_theta(z_t,a_t)",
+            "LLM: p_theta(x_t | x_<t)",
+            "GNN: H' = sigma(A H W)",
+            "L = -sum y log p_theta(y|x)",
+            "KL(q_phi(z|x) || p(z))",
+            "SE(3): R f(x) = f(Rx)",
+            "RoPE(q_i,k_i,theta_i)",
+            "MD: F_i = -grad_i U(r)",
+            "E[log p_theta(x|z)] - KL(q||p)"
+        ];
+        const ambientHarmonics = [];
+        const ambientEquationMotifs = [];
+        const goldenSpiralMotifs = [];
+        let nextEquationMotifAt = 0;
+        const goldenSpiralDuration = 10;
+        const goldenSpiralDrawDuration = 10;
+        const goldenSpiralStep = 0.006;
+
+        function smoothPulse(age, duration) {
+            const fade = Math.min(1.4, duration * 0.24);
+            const inAlpha = Math.min(1, age / fade);
+            const outAlpha = Math.min(1, (duration - age) / fade);
+            return Math.max(0, Math.min(inAlpha, outAlpha));
+        }
+
+        function getAmbientSafeZones() {
+            const zones = [];
+            const selectors = [
+                { selector: '.hero-copy', padding: 72 },
+                { selector: '.hero-photo-wrap', padding: 34 }
+            ];
+
+            selectors.forEach(({ selector, padding }) => {
+                const element = document.querySelector(selector);
+                if (!element) return;
+
+                const rect = element.getBoundingClientRect();
+                if (rect.bottom < 0 || rect.top > height || rect.right < 0 || rect.left > width) return;
+
+                zones.push({
+                    left: rect.left - padding,
+                    right: rect.right + padding,
+                    top: rect.top - padding,
+                    bottom: rect.bottom + padding
+                });
+            });
+
+            return zones;
+        }
+
+        function motifCenter(motif, time = performance.now() * 0.001) {
+            const age = Math.max(0, time - motif.birth);
+            return {
+                x: motif.x * width + (motif.driftX || 0) * age,
+                y: motif.y * height + (motif.driftY || 0) * age
+            };
+        }
+
+        function activeAmbientMotifs(time) {
+            return [
+                ...ambientHarmonics,
+                ...ambientEquationMotifs,
+                ...goldenSpiralMotifs.filter(motif => time - motif.birth >= 0 && time - motif.birth <= motif.duration)
+            ];
+        }
+
+        function placeAmbientMotif(size, usedMotifs = [], time = performance.now() * 0.001) {
+            const safeZones = getAmbientSafeZones();
+            const radius = Math.min(width, height) * size * 0.72;
+            const marginX = Math.min(width * 0.06, 110);
+            const marginTop = Math.min(height * 0.14, 135);
+            const marginBottom = Math.min(height * 0.1, 105);
+            const allMotifs = [...activeAmbientMotifs(time), ...usedMotifs];
+
+            let bestCandidate = null;
+            let bestClearance = -Infinity;
+
+            function scoreCandidate(x, y) {
+                if (safeZones.some(zone =>
+                    x > zone.left - radius && x < zone.right + radius && y > zone.top - radius && y < zone.bottom + radius
+                )) {
+                    return -Infinity;
+                }
+
+                const clearance = allMotifs.reduce((minDistance, motif) => {
+                    const center = motifCenter(motif, time);
+                    return Math.min(minDistance, Math.hypot(x - center.x, y - center.y));
+                }, Math.min(width, height));
+                const edgePenalty = Math.min(x - marginX, width - marginX - x, y - marginTop, height - marginBottom - y);
+                return clearance + Math.max(0, edgePenalty) * 0.25 + Math.random() * 28;
+            }
+
+            for (let attempt = 0; attempt < 240; attempt++) {
+                const x = marginX + Math.random() * Math.max(1, width - marginX * 2);
+                const y = marginTop + Math.random() * Math.max(1, height - marginTop - marginBottom);
+                const score = scoreCandidate(x, y);
+                if (score > bestClearance) {
+                    bestClearance = score;
+                    bestCandidate = { x: x / width, y: y / height };
+                }
+            }
+
+            for (let gx = 0.08; gx <= 0.92; gx += 0.085) {
+                for (let gy = 0.15; gy <= 0.88; gy += 0.085) {
+                    const x = gx * width;
+                    const y = gy * height;
+                    const score = scoreCandidate(x, y);
+                    if (score > bestClearance) {
+                        bestClearance = score;
+                        bestCandidate = { x: gx, y: gy };
+                    }
+                }
+            }
+
+            return bestCandidate || {
+                x: 0.58 + Math.random() * 0.34,
+                y: 0.18 + Math.random() * 0.64
+            };
+        }
+
+        function placeGoldenSpiralMotif(size, time = performance.now() * 0.001) {
+            const allHarmonics = ambientHarmonics.map(motif => motifCenter(motif, time));
+            const preferredZones = [];
+
+            allHarmonics.forEach(center => {
+                preferredZones.push({ x: center.x < width * 0.5 ? 0.78 : 0.22, y: center.y / height });
+                preferredZones.push({ x: center.x / width, y: center.y < height * 0.5 ? 0.78 : 0.24 });
+            });
+            preferredZones.push({ x: 0.5, y: 0.5 });
+
+            const safeZones = getAmbientSafeZones();
+            const radius = Math.min(width, height) * size * 0.9;
+            const otherMotifs = [...ambientEquationMotifs, ...goldenSpiralMotifs];
+            let bestCandidate = null;
+            let bestScore = -Infinity;
+
+            function scorePosition(x, y) {
+                if (safeZones.some(zone =>
+                    x > zone.left - radius && x < zone.right + radius && y > zone.top - radius && y < zone.bottom + radius
+                )) {
+                    return -Infinity;
+                }
+
+                const harmonicDistance = allHarmonics.reduce((minDistance, center) =>
+                    Math.min(minDistance, Math.hypot(x - center.x, y - center.y)), Math.min(width, height));
+                const motifDistance = otherMotifs.reduce((minDistance, motif) => {
+                    const center = motifCenter(motif, time);
+                    return Math.min(minDistance, Math.hypot(x - center.x, y - center.y));
+                }, Math.min(width, height));
+                const middleBias = -Math.hypot(x - width * 0.5, y - height * 0.5) * 0.12;
+                return harmonicDistance * 1.35 + motifDistance * 0.85 + middleBias + Math.random() * 20;
+            }
+
+            preferredZones.forEach(zone => {
+                for (let attempt = 0; attempt < 42; attempt++) {
+                    const x = Math.min(width * 0.92, Math.max(width * 0.08, zone.x * width + (Math.random() - 0.5) * width * 0.18));
+                    const y = Math.min(height * 0.86, Math.max(height * 0.16, zone.y * height + (Math.random() - 0.5) * height * 0.18));
+                    const score = scorePosition(x, y);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestCandidate = { x: x / width, y: y / height };
+                    }
+                }
+            });
+
+            if (bestCandidate) return bestCandidate;
+            return placeAmbientMotif(size, goldenSpiralMotifs, time);
+        }
+
+        function createHarmonicMotif(time, usedMotifs = []) {
+            const size = 0.105 + Math.random() * 0.045;
+            const position = placeAmbientMotif(size, usedMotifs, time);
+            return {
+                x: position.x,
+                y: position.y,
+                size,
+                birth: time,
+                duration: 7.5 + Math.random() * 3.5,
+                driftX: (Math.random() - 0.5) * 4,
+                driftY: (Math.random() - 0.5) * 3,
+                spin: (Math.random() - 0.5) * 0.34,
+                phase: Math.random() * Math.PI * 2
+            };
+        }
+
+        function createEquationMotif(time) {
+            const size = 0.06 + Math.random() * 0.035;
+            const position = placeAmbientMotif(size + 0.06, [], time);
+            return {
+                x: position.x,
+                y: position.y,
+                size,
+                birth: time,
+                duration: 8 + Math.random() * 5,
+                driftX: (Math.random() - 0.5) * 7,
+                driftY: (Math.random() - 0.5) * 5,
+                phase: Math.random() * Math.PI * 2,
+                equation: ambientEquations[Math.floor(Math.random() * ambientEquations.length)]
+            };
+        }
+
+        function createGoldenSpiralMotif(time, usedMotifs = []) {
+            const size = 0.12 + Math.random() * 0.035;
+            const position = placeGoldenSpiralMotif(size * 1.25, time);
+            return {
+                x: position.x,
+                y: position.y,
+                size,
+                birth: time,
+                duration: goldenSpiralDuration,
+                driftX: (Math.random() - 0.5) * 1.2,
+                driftY: (Math.random() - 0.5) * 0.9,
+                phase: Math.random() * Math.PI * 2
+            };
+        }
+
+        function drawAxisLine(label, x1, y1, x2, y2, color, alpha) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = `rgba(${color}, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            const angle = Math.atan2(y2 - y1, x2 - x1);
+            const arrow = 6;
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - Math.cos(angle - 0.45) * arrow, y2 - Math.sin(angle - 0.45) * arrow);
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(x2 - Math.cos(angle + 0.45) * arrow, y2 - Math.sin(angle + 0.45) * arrow);
+            ctx.stroke();
+
+            ctx.font = '11px JetBrains Mono, monospace';
+            ctx.fillStyle = `rgba(${color}, ${Math.min(1, alpha + 0.16)})`;
+            ctx.fillText(label, x2 + 5, y2 + 4);
+        }
+
+        function drawSphericalHarmonicMotif(motif, alpha, color, time) {
+            const size = Math.min(width, height) * motif.size;
+            const age = time - motif.birth;
+            const x = motif.x * width + motif.driftX * age;
+            const y = motif.y * height + motif.driftY * age;
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(Math.sin(time * 0.18 + motif.phase) * 0.15 + motif.spin * age * 0.08);
+            ctx.globalCompositeOperation = 'lighter';
+
+            drawAxisLine('x', 0, 0, size * 0.94, -size * 0.12, color, alpha * 0.5);
+            drawAxisLine('y', 0, 0, size * 0.08, -size * 0.82, color, alpha * 0.5);
+            drawAxisLine('z', 0, 0, -size * 0.54, size * 0.46, color, alpha * 0.5);
+
+            for (let layer = 0; layer < 4; layer++) {
+                ctx.beginPath();
+                const segments = 180;
+                const phase = motif.phase + time * (0.58 + layer * 0.11) + layer * 1.2;
+                for (let i = 0; i <= segments; i++) {
+                    const a = (i / segments) * Math.PI * 2;
+                    const harmonic = Math.sin(a * (3 + layer) + phase) * 0.2
+                        + Math.cos(a * (5 - layer * 0.45) - phase * 0.75) * 0.1;
+                    const r = size * (0.58 + harmonic + layer * 0.035);
+                    const px = Math.cos(a + layer * 0.22) * r;
+                    const py = Math.sin(a) * r * (0.55 + layer * 0.08)
+                        + Math.sin(a * 2 + phase) * size * 0.08;
+                    if (i === 0) ctx.moveTo(px, py);
+                    else ctx.lineTo(px, py);
+                }
+                ctx.strokeStyle = `rgba(${color}, ${alpha * (0.14 + layer * 0.035)})`;
+                ctx.lineWidth = 1 + layer * 0.25;
+                ctx.stroke();
+            }
+
+            ctx.restore();
+        }
+
+        function drawEquationMotif(motif, alpha, color, time) {
+            const age = time - motif.birth;
+            const x = motif.x * width + motif.driftX * age;
+            const y = motif.y * height + motif.driftY * age;
+            const size = Math.min(width, height) * motif.size;
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(Math.sin(time * 0.2 + motif.phase) * 0.035);
+            ctx.globalCompositeOperation = 'lighter';
+            ctx.font = `${Math.max(11, Math.min(16, size * 0.18))}px JetBrains Mono, monospace`;
+            ctx.fillStyle = `rgba(${color}, ${alpha * 0.28})`;
+            ctx.fillText(motif.equation, 0, 0);
+            ctx.beginPath();
+            ctx.moveTo(0, 8);
+            ctx.lineTo(Math.min(ctx.measureText(motif.equation).width, 260), 8);
+            ctx.strokeStyle = `rgba(${color}, ${alpha * 0.1})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function drawGoldenSpiralMotif(motif, alpha, color, time) {
+            const age = time - motif.birth;
+            const x = motif.x * width + motif.driftX * age;
+            const y = motif.y * height + motif.driftY * age;
+            const size = Math.min(width, height) * motif.size;
+            const phi = (1 + Math.sqrt(5)) / 2;
+            const totalSteps = Math.floor(goldenSpiralDrawDuration / goldenSpiralStep);
+            const visibleSteps = Math.min(totalSteps, Math.floor(age / goldenSpiralStep));
+            const thetaMax = Math.PI * 6.5;
+
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(Math.sin(time * 0.12 + motif.phase) * 0.08);
+            ctx.globalCompositeOperation = 'lighter';
+
+            drawAxisLine('x', -size * 0.54, 0, size * 0.58, 0, color, alpha * 0.38);
+            drawAxisLine('y', 0, size * 0.48, 0, -size * 0.58, color, alpha * 0.38);
+
+            ctx.beginPath();
+            for (let i = 0; i <= visibleSteps; i++) {
+                const t = i / totalSteps;
+                const theta = t * thetaMax;
+                const r = size * Math.pow(phi, (theta - thetaMax) / (Math.PI / 2));
+                const px = Math.cos(theta) * r;
+                const py = Math.sin(theta) * r;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.strokeStyle = `rgba(${color}, ${alpha * 0.58})`;
+            ctx.lineWidth = 1.9;
+            ctx.stroke();
+
+            const rings = 4;
+            for (let i = 1; i <= rings; i++) {
+                const theta = (i / rings) * thetaMax;
+                const r = size * Math.pow(phi, (theta - thetaMax) / (Math.PI / 2));
+                ctx.beginPath();
+                ctx.arc(0, 0, r, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(${color}, ${alpha * 0.05})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            if (visibleSteps > 0) {
+                const t = visibleSteps / totalSteps;
+                const theta = t * thetaMax;
+                const r = size * Math.pow(phi, (theta - thetaMax) / (Math.PI / 2));
+                ctx.beginPath();
+                ctx.arc(Math.cos(theta) * r, Math.sin(theta) * r, 4, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${color}, ${alpha * 0.62})`;
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+
+        function drawAmbientMotifs(isDark, time) {
+            const color = isDark ? '255, 255, 255' : '234, 88, 12';
+
+            for (let i = ambientHarmonics.length - 1; i >= 0; i--) {
+                const motif = ambientHarmonics[i];
+                if (time - motif.birth > motif.duration) {
+                    ambientHarmonics.splice(i, 1);
+                }
+            }
+
+            for (let i = ambientEquationMotifs.length - 1; i >= 0; i--) {
+                const motif = ambientEquationMotifs[i];
+                if (time - motif.birth > motif.duration) {
+                    ambientEquationMotifs.splice(i, 1);
+                }
+            }
+
+            while (ambientHarmonics.length < 2) {
+                ambientHarmonics.push(createHarmonicMotif(time - Math.random() * 2.5, ambientHarmonics));
+            }
+
+            while (ambientEquationMotifs.length < 4) {
+                ambientEquationMotifs.push(createEquationMotif(time));
+            }
+
+            if (time > nextEquationMotifAt && ambientEquationMotifs.length < 5) {
+                ambientEquationMotifs.push(createEquationMotif(time));
+                nextEquationMotifAt = time + 0.9 + Math.random() * 1.1;
+            }
+
+            for (let i = goldenSpiralMotifs.length - 1; i >= 0; i--) {
+                const motif = goldenSpiralMotifs[i];
+                if (time - motif.birth > motif.duration) {
+                    goldenSpiralMotifs.splice(i, 1);
+                }
+            }
+
+            while (goldenSpiralMotifs.length < 1) {
+                goldenSpiralMotifs.push(createGoldenSpiralMotif(time, goldenSpiralMotifs));
+            }
+
+            for (let i = ambientHarmonics.length - 1; i >= 0; i--) {
+                const motif = ambientHarmonics[i];
+                const age = time - motif.birth;
+                const alpha = smoothPulse(age, motif.duration) * (isDark ? 0.74 : 0.58);
+                drawSphericalHarmonicMotif(motif, alpha, color, time);
+            }
+
+            for (let i = ambientEquationMotifs.length - 1; i >= 0; i--) {
+                const motif = ambientEquationMotifs[i];
+                const age = time - motif.birth;
+                drawEquationMotif(motif, smoothPulse(age, motif.duration) * (isDark ? 0.74 : 0.58), color, time);
+            }
+
+            for (let i = goldenSpiralMotifs.length - 1; i >= 0; i--) {
+                const motif = goldenSpiralMotifs[i];
+                const age = time - motif.birth;
+                drawGoldenSpiralMotif(motif, smoothPulse(age, motif.duration) * (isDark ? 0.74 : 0.58), color, time);
+            }
+        }
+
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
             const isDark = document.documentElement.classList.contains('dark');
             const rgb = isDark ? '255, 255, 255' : '249, 115, 22';
+            const time = performance.now() * 0.001;
 
             // Draw Grid
             dots.forEach(dot => {
@@ -1114,6 +1511,8 @@
                 ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
                 ctx.fill();
             });
+
+            drawAmbientMotifs(isDark, time);
 
             // Draw Cursor Trails
             for (let i = trailParticles.length - 1; i >= 0; i--) {
@@ -1183,6 +1582,7 @@
         ];
         const terminal = document.getElementById('terminal-logs');
         function addLog() {
+            if (!terminal) return;
             const line = document.createElement('div');
             line.className = 'terminal-line';
             const msg = logMessages[Math.floor(Math.random() * logMessages.length)];
@@ -1190,205 +1590,564 @@
             terminal.appendChild(line);
             if (terminal.children.length > 5) terminal.removeChild(terminal.firstChild);
         }
-        addLog(); addLog();
-        setInterval(addLog, 2500 + Math.random() * 2000);
+        if (terminal) {
+            addLog();
+            addLog();
+            setInterval(addLog, 2500 + Math.random() * 2000);
+        }
 
         // 6. Skills Grid is now static HTML
 
-        // 7. Interactive Neural Sandbox Game
-        const sandboxCanvas = document.getElementById('sandbox-canvas');
-        const sCtx = sandboxCanvas.getContext('2d');
-        let sWidth, sHeight;
-        const nodes = [];
-        let draggingNode = null;
-        let sandboxMouse = { x: 0, y: 0, isDown: false };
 
-        function resizeSandbox() {
-            const rect = sandboxCanvas.parentElement.getBoundingClientRect();
-            sWidth = sandboxCanvas.width = rect.width;
-            sHeight = sandboxCanvas.height = rect.height;
-        }
-        window.addEventListener('resize', resizeSandbox);
-
-        class Node {
-            constructor(x, y) {
-                this.x = x; this.y = y;
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = (Math.random() - 0.5) * 1.5;
-                this.radius = 5;
-            }
-            update() {
-                if (draggingNode !== this) {
-                    this.x += this.vx; this.y += this.vy;
-                    if (this.x <= 0 || this.x >= sWidth) this.vx *= -1;
-                    if (this.y <= 0 || this.y >= sHeight) this.vy *= -1;
-                }
-            }
-            draw(isDark) {
-                sCtx.beginPath();
-                sCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                sCtx.fillStyle = isDark ? '#ffffff' : '#ea580c';
-                sCtx.fill();
-            }
-        }
-
-        setTimeout(() => {
-            resizeSandbox();
-            for (let i = 0; i < 20; i++) nodes.push(new Node(Math.random() * sWidth, Math.random() * sHeight));
-        }, 500);
-
-        sandboxCanvas.addEventListener('mousedown', e => {
-            const rect = sandboxCanvas.getBoundingClientRect();
-            sandboxMouse.x = e.clientX - rect.left; sandboxMouse.y = e.clientY - rect.top;
-            sandboxMouse.isDown = true;
-            draggingNode = null;
-            for (let n of nodes) {
-                if (Math.hypot(n.x - sandboxMouse.x, n.y - sandboxMouse.y) < 20) {
-                    draggingNode = n; break;
-                }
-            }
-            if (!draggingNode && nodes.length < 60) nodes.push(new Node(sandboxMouse.x, sandboxMouse.y));
-        });
-
-        sandboxCanvas.addEventListener('mousemove', e => {
-            const rect = sandboxCanvas.getBoundingClientRect();
-            sandboxMouse.x = e.clientX - rect.left; sandboxMouse.y = e.clientY - rect.top;
-            if (draggingNode) { draggingNode.x = sandboxMouse.x; draggingNode.y = sandboxMouse.y; }
-        });
-
-        sandboxCanvas.addEventListener('mouseup', () => { sandboxMouse.isDown = false; draggingNode = null; });
-        sandboxCanvas.addEventListener('mouseleave', () => { sandboxMouse.isDown = false; draggingNode = null; });
-
-        document.getElementById('clear-sandbox').addEventListener('click', () => {
-            nodes.length = 0;
-            for (let i = 0; i < 15; i++) nodes.push(new Node(Math.random() * sWidth, Math.random() * sHeight));
-        });
-
-        function animateSandbox() {
-            sCtx.clearRect(0, 0, sWidth, sHeight);
-            const isDark = document.documentElement.classList.contains('dark');
-            let bonds = 0;
-
-            for (let i = 0; i < nodes.length; i++) {
-                nodes[i].update();
-                for (let j = i + 1; j < nodes.length; j++) {
-                    let dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
-                    if (dist < 120) {
-                        bonds++;
-                        sCtx.beginPath();
-                        sCtx.moveTo(nodes[i].x, nodes[i].y);
-                        sCtx.lineTo(nodes[j].x, nodes[j].y);
-                        sCtx.strokeStyle = isDark ? `rgba(255, 255, 255, ${1 - dist / 120})` : `rgba(234, 88, 12, ${1 - dist / 120})`;
-                        sCtx.lineWidth = 1.5;
-                        sCtx.stroke();
-                    }
-                }
-                nodes[i].draw(isDark);
-            }
-
-            // Draw interaction radius on hover
-            if (!sandboxMouse.isDown && document.querySelector('#sandbox:hover')) {
-                sCtx.beginPath();
-                sCtx.arc(sandboxMouse.x, sandboxMouse.y, 40, 0, Math.PI * 2);
-                sCtx.fillStyle = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(234,88,12,0.1)';
-                sCtx.fill();
-            }
-
-            document.getElementById('node-count').innerText = nodes.length;
-            document.getElementById('bond-count').innerText = bonds;
-            requestAnimationFrame(animateSandbox);
-        }
-        animateSandbox();
 
         // 8. Three.js 3D Geometric Node Animation in Hero Section
         const hero3d = document.getElementById('hero-3d');
+
+        // Bio Typewriter Effect - types through the real paragraph/link markup
+        (function initBioTypewriter() {
+            const container = document.getElementById('bio-typewriter');
+            const source = document.getElementById('bio-source');
+            if (!container || !source) return;
+
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                container.innerHTML = '';
+                container.appendChild(source.content.cloneNode(true));
+                return;
+            }
+
+            const sourceNodes = Array.from(source.content.childNodes).filter(node => node.textContent.trim());
+            const cursor = document.createElement('span');
+            cursor.className = 'bio-type-cursor';
+            cursor.textContent = '|';
+            let typeTimer = null;
+
+            function cloneForTyping(node, jobs) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const placeholder = document.createTextNode('');
+                    jobs.push({ target: placeholder, text: node.textContent });
+                    return placeholder;
+                }
+
+                if (node.nodeType !== Node.ELEMENT_NODE) {
+                    return document.createTextNode('');
+                }
+
+                const clone = node.cloneNode(false);
+                Array.from(node.childNodes).forEach(child => {
+                    clone.appendChild(cloneForTyping(child, jobs));
+                });
+                return clone;
+            }
+
+            function buildFrame() {
+                const jobs = [];
+                container.innerHTML = '';
+                sourceNodes.forEach(node => {
+                    container.appendChild(cloneForTyping(node, jobs));
+                });
+                return jobs;
+            }
+
+            function placeCursorAfter(textNode) {
+                if (textNode && textNode.parentNode) {
+                    textNode.parentNode.insertBefore(cursor, textNode.nextSibling);
+                }
+            }
+
+            function typeJobs(jobs, jobIndex = 0, charIndex = 0) {
+                if (jobIndex >= jobs.length) {
+                    typeTimer = setTimeout(startTyping, 4200);
+                    return;
+                }
+
+                const job = jobs[jobIndex];
+                placeCursorAfter(job.target);
+
+                if (charIndex <= job.text.length) {
+                    job.target.nodeValue = job.text.slice(0, charIndex);
+                    const delay = job.text.charAt(charIndex - 1) === '.' ? 130 : 9 + Math.random() * 10;
+                    typeTimer = setTimeout(() => typeJobs(jobs, jobIndex, charIndex + 1), delay);
+                    return;
+                }
+
+                typeJobs(jobs, jobIndex + 1, 0);
+            }
+
+            function startTyping() {
+                clearTimeout(typeTimer);
+                const jobs = buildFrame();
+                typeJobs(jobs);
+            }
+
+            typeTimer = setTimeout(startTyping, 500);
+        })();
+
+        function initHeroCanvasFallback() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            hero3d.appendChild(canvas);
+
+            let canvasWidth = 1;
+            let canvasHeight = 1;
+            let dpr = 1;
+            const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: 0, inside: false };
+            const nodeCount = 66;
+            const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+            const nodes = [];
+
+            for (let i = 0; i < nodeCount; i++) {
+                const y = 1 - (i / (nodeCount - 1)) * 2;
+                const radius = Math.sqrt(Math.max(0, 1 - y * y));
+                const theta = goldenAngle * i;
+                nodes.push({
+                    x: Math.cos(theta) * radius,
+                    y,
+                    z: Math.sin(theta) * radius,
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            const pairs = [];
+            nodes.forEach((node, index) => {
+                const nearest = nodes
+                    .map((other, otherIndex) => ({
+                        otherIndex,
+                        distance: index === otherIndex ? Infinity : Math.hypot(node.x - other.x, node.y - other.y, node.z - other.z)
+                    }))
+                    .sort((a, b) => a.distance - b.distance)
+                    .slice(0, 2);
+                nearest.forEach(({ otherIndex }) => {
+                    if (index < otherIndex) pairs.push([index, otherIndex]);
+                });
+            });
+
+            function resizeFallbackCanvas() {
+                const rect = hero3d.getBoundingClientRect();
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                canvasWidth = Math.max(rect.width, 1);
+                canvasHeight = Math.max(rect.height, 1);
+                canvas.width = Math.floor(canvasWidth * dpr);
+                canvas.height = Math.floor(canvasHeight * dpr);
+                canvas.style.width = `${canvasWidth}px`;
+                canvas.style.height = `${canvasHeight}px`;
+            }
+
+            function rotatePoint(node, time, radius) {
+                const ay = time * 0.36;
+                const ax = -0.22 + pointer.y * 0.22;
+                const x1 = node.x * Math.cos(ay) - node.z * Math.sin(ay);
+                const z1 = node.x * Math.sin(ay) + node.z * Math.cos(ay);
+                const y1 = node.y * Math.cos(ax) - z1 * Math.sin(ax);
+                const z2 = node.y * Math.sin(ax) + z1 * Math.cos(ax);
+                return { x: x1 * radius, y: y1 * radius, z: z2 * radius };
+            }
+
+            function project(point) {
+                const scale = Math.min(canvasWidth, canvasHeight) * 0.17;
+                const perspective = 1.55 / (1.55 + point.z * 0.18);
+                return {
+                    x: canvasWidth * 0.5 + point.x * scale * perspective,
+                    y: canvasHeight * 0.5 + point.y * scale * perspective,
+                    z: point.z,
+                    perspective
+                };
+            }
+
+            function drawHarmonicRings(time, color) {
+                for (let layer = 0; layer < 4; layer++) {
+                    ctx.beginPath();
+                    for (let i = 0; i <= 260; i++) {
+                        const a = (i / 260) * Math.PI * 2;
+                        const wave = Math.sin(a * (3 + layer) + time * (0.9 + layer * 0.08)) * 0.14
+                            + Math.cos(a * 5 - time * 0.7 + layer) * 0.08;
+                        const r = Math.min(canvasWidth, canvasHeight) * (0.25 + layer * 0.018) * (1 + wave);
+                        const x = canvasWidth * 0.5 + Math.cos(a + layer * 0.25) * r;
+                        const y = canvasHeight * 0.5 + Math.sin(a) * r * (0.58 + layer * 0.07)
+                            + Math.sin(a * 2 + time) * 22;
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.strokeStyle = `rgba(${color}, ${0.12 + pointer.active * 0.08})`;
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+                }
+            }
+
+            function animateFallback() {
+                requestAnimationFrame(animateFallback);
+                const time = performance.now() * 0.001;
+                const isDark = document.documentElement.classList.contains('dark');
+                const color = isDark ? '251, 146, 60' : '234, 88, 12';
+
+                pointer.x += (pointer.targetX - pointer.x) * 0.1;
+                pointer.y += (pointer.targetY - pointer.y) * 0.1;
+                pointer.active += ((pointer.inside ? 1 : 0.32) - pointer.active) * 0.065;
+
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                ctx.globalCompositeOperation = 'lighter';
+
+                drawHarmonicRings(time, color);
+
+                const pointerVector = {
+                    x: pointer.x * 1.12,
+                    y: pointer.y * 0.96,
+                    z: 1.2
+                };
+                const pointerLength = Math.hypot(pointerVector.x, pointerVector.y, pointerVector.z) || 1;
+                pointerVector.x /= pointerLength;
+                pointerVector.y /= pointerLength;
+                pointerVector.z /= pointerLength;
+
+                const projected = nodes.map(node => {
+                    const alignment = Math.max(0, node.x * pointerVector.x + node.y * pointerVector.y + node.z * pointerVector.z);
+                    const wake = Math.pow(alignment, 3.4) * pointer.active * 0.52;
+                    const harmonic = Math.sin(node.y * 3 + node.phase + time * 1.3) * 0.08
+                        + Math.cos(node.z * 4 - time) * 0.05;
+                    return project(rotatePoint(node, time, 1.68 + harmonic + wake));
+                });
+
+                pairs.forEach(([a, b]) => {
+                    const start = projected[a];
+                    const end = projected[b];
+                    const depth = Math.max(0.18, (start.perspective + end.perspective) * 0.42);
+                    ctx.beginPath();
+                    ctx.moveTo(start.x, start.y);
+                    ctx.lineTo(end.x, end.y);
+                    ctx.strokeStyle = `rgba(${color}, ${(0.14 + pointer.active * 0.18) * depth})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                });
+
+                projected.forEach(point => {
+                    const radius = (1.8 + point.perspective * 1.4) * (0.86 + pointer.active * 0.22);
+                    ctx.beginPath();
+                    ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${color}, ${0.45 + pointer.active * 0.28})`;
+                    ctx.fill();
+                });
+
+            }
+
+            window.addEventListener('resize', resizeFallbackCanvas);
+            window.addEventListener('mousemove', e => {
+                const rect = hero3d.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+                const localX = (e.clientX - rect.left) / rect.width;
+                const localY = (e.clientY - rect.top) / rect.height;
+                pointer.inside = localX >= 0 && localX <= 1 && localY >= 0 && localY <= 1;
+                pointer.targetX = localX * 2 - 1;
+                pointer.targetY = -(localY * 2 - 1);
+            });
+            resizeFallbackCanvas();
+            animateFallback();
+        }
+
         if (hero3d && typeof THREE !== 'undefined') {
             const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, hero3d.clientWidth / hero3d.clientHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            renderer.setSize(hero3d.clientWidth, hero3d.clientHeight);
+            const size = () => {
+                const rect = hero3d.getBoundingClientRect();
+                return {
+                    width: Math.max(rect.width, 1),
+                    height: Math.max(rect.height, 1)
+                };
+            };
+            const initialSize = size();
+            const camera = new THREE.PerspectiveCamera(52, initialSize.width / initialSize.height, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+            renderer.setSize(initialSize.width, initialSize.height);
             hero3d.appendChild(renderer.domElement);
 
-            // Create a complex geometric node network (Icosahedron)
-            const geometry = new THREE.IcosahedronGeometry(2, 1);
+            const neuralGroup = new THREE.Group();
+            neuralGroup.scale.setScalar(0.58);
+            scene.add(neuralGroup);
+
+            const harmonicGroup = new THREE.Group();
+            neuralGroup.add(harmonicGroup);
 
             const isDarkInit = document.documentElement.classList.contains('dark');
-            const initColor = isDarkInit ? 0xffffff : 0xea580c;
-
-            const material = new THREE.MeshBasicMaterial({
+            const initColor = isDarkInit ? 0xfb923c : 0xea580c;
+            const shellGeometry = new THREE.IcosahedronGeometry(3.05, 2);
+            const shellMaterial = new THREE.MeshBasicMaterial({
                 color: initColor,
                 wireframe: true,
                 transparent: true,
-                opacity: 0.2
+                opacity: 0.34,
+                depthWrite: false
             });
-            const sphere = new THREE.Mesh(geometry, material);
-            scene.add(sphere);
+            const shell = new THREE.Mesh(shellGeometry, shellMaterial);
+            neuralGroup.add(shell);
 
-            const pointsMaterial = new THREE.PointsMaterial({
+            const nodeCount = 68;
+            const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+            const nodeBases = [];
+            const nodePositions = new Float32Array(nodeCount * 3);
+
+            for (let i = 0; i < nodeCount; i++) {
+                const y = 1 - (i / (nodeCount - 1)) * 2;
+                const radius = Math.sqrt(Math.max(0, 1 - y * y));
+                const theta = goldenAngle * i;
+                const base = new THREE.Vector3(Math.cos(theta) * radius, y, Math.sin(theta) * radius);
+                nodeBases.push({
+                    base,
+                    theta: Math.acos(y),
+                    phi: Math.atan2(base.z, base.x),
+                    phase: Math.random() * Math.PI * 2
+                });
+            }
+
+            const pairKeys = new Set();
+            const connectionPairs = [];
+            nodeBases.forEach((node, index) => {
+                const nearest = nodeBases
+                    .map((other, otherIndex) => ({
+                        otherIndex,
+                        distance: index === otherIndex ? Infinity : node.base.distanceTo(other.base)
+                    }))
+                    .sort((a, b) => a.distance - b.distance)
+                    .slice(0, 2);
+
+                nearest.forEach(({ otherIndex }) => {
+                    const a = Math.min(index, otherIndex);
+                    const b = Math.max(index, otherIndex);
+                    const key = `${a}-${b}`;
+                    if (!pairKeys.has(key)) {
+                        pairKeys.add(key);
+                        connectionPairs.push([a, b]);
+                    }
+                });
+            });
+
+            const nodeGeometry = new THREE.BufferGeometry();
+            const nodeAttribute = new THREE.BufferAttribute(nodePositions, 3);
+            nodeAttribute.setUsage(THREE.DynamicDrawUsage);
+            nodeGeometry.setAttribute('position', nodeAttribute);
+
+            const nodeMaterial = new THREE.PointsMaterial({
                 color: initColor,
-                size: 0.05
+                size: 0.095,
+                sizeAttenuation: true,
+                transparent: true,
+                opacity: 0.86,
+                depthWrite: false
             });
-            const points = new THREE.Points(geometry, pointsMaterial);
-            scene.add(points);
+            const neuralNodes = new THREE.Points(nodeGeometry, nodeMaterial);
+            neuralGroup.add(neuralNodes);
 
-            camera.position.z = 4.5;
+            const linePositions = new Float32Array(connectionPairs.length * 6);
+            const lineGeometry = new THREE.BufferGeometry();
+            const lineAttribute = new THREE.BufferAttribute(linePositions, 3);
+            lineAttribute.setUsage(THREE.DynamicDrawUsage);
+            lineGeometry.setAttribute('position', lineAttribute);
+
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: initColor,
+                transparent: true,
+                opacity: 0.34,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            const neuralLinks = new THREE.LineSegments(lineGeometry, lineMaterial);
+            neuralGroup.add(neuralLinks);
+
+            const harmonicMaterials = [];
+            const harmonicLoops = [];
+            const harmonicSegments = 220;
+
+            for (let layer = 0; layer < 4; layer++) {
+                const positions = new Float32Array(harmonicSegments * 3);
+                const geometry = new THREE.BufferGeometry();
+                const attribute = new THREE.BufferAttribute(positions, 3);
+                attribute.setUsage(THREE.DynamicDrawUsage);
+                geometry.setAttribute('position', attribute);
+
+                const material = new THREE.LineBasicMaterial({
+                    color: initColor,
+                    transparent: true,
+                    opacity: 0.2 - layer * 0.015,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+                harmonicMaterials.push(material);
+
+                const loop = new THREE.LineLoop(geometry, material);
+                loop.rotation.set(layer * 0.42, layer * 0.58, layer * 0.27);
+                loop.userData = {
+                    layer,
+                    phase: layer * 1.35,
+                    radius: 3.22 + layer * 0.2
+                };
+                harmonicLoops.push(loop);
+                harmonicGroup.add(loop);
+            }
+
+            const tracerMaterial = new THREE.MeshBasicMaterial({
+                color: initColor,
+                transparent: true,
+                opacity: 0.88,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            const tracer = new THREE.Mesh(new THREE.SphereGeometry(0.07, 18, 18), tracerMaterial);
+            tracer.visible = false;
+            neuralGroup.add(tracer);
+
+            const tracerRingMaterial = new THREE.MeshBasicMaterial({
+                color: initColor,
+                transparent: true,
+                opacity: 0.35,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            const tracerRing = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.006, 8, 42), tracerRingMaterial);
+            tracerRing.visible = false;
+            neuralGroup.add(tracerRing);
+
+            const heroPointer = {
+                x: 0,
+                y: 0,
+                targetX: 0,
+                targetY: 0,
+                active: 0,
+                inside: false
+            };
+
+            window.addEventListener('mousemove', e => {
+                const rect = hero3d.getBoundingClientRect();
+                if (!rect.width || !rect.height) return;
+
+                const localX = (e.clientX - rect.left) / rect.width;
+                const localY = (e.clientY - rect.top) / rect.height;
+                heroPointer.inside = localX >= 0 && localX <= 1 && localY >= 0 && localY <= 1;
+                heroPointer.targetX = localX * 2 - 1;
+                heroPointer.targetY = -(localY * 2 - 1);
+            });
+
+            camera.position.z = 6;
+
+            function updateHarmonicLoop(loop, time) {
+                const { layer, phase, radius } = loop.userData;
+                const positions = loop.geometry.attributes.position.array;
+                const timeShift = time * (0.78 + layer * 0.13) + phase;
+
+                for (let i = 0; i < harmonicSegments; i++) {
+                    const a = (i / harmonicSegments) * Math.PI * 2;
+                    const wave = Math.sin(a * (3 + layer) + timeShift) * 0.14
+                        + Math.cos(a * (5 - layer * 0.45) - timeShift * 0.8) * 0.08;
+                    const r = radius * (1 + wave);
+                    const offset = i * 3;
+                    positions[offset] = Math.cos(a) * r;
+                    positions[offset + 1] = Math.sin(a) * r * (0.55 + layer * 0.07);
+                    positions[offset + 2] = Math.sin(a * 2 + timeShift) * (0.32 + layer * 0.07);
+                }
+
+                loop.geometry.attributes.position.needsUpdate = true;
+            }
+
+            function updateNeuralGeometry(time, pointerDirection) {
+                for (let i = 0; i < nodeBases.length; i++) {
+                    const node = nodeBases[i];
+                    const alignment = Math.max(0, node.base.dot(pointerDirection));
+                    const wake = Math.pow(alignment, 3.35) * heroPointer.active * 0.68;
+                    const harmonic = Math.sin(node.theta * 3 + node.phi * 2 + time * 1.25 + node.phase) * 0.12
+                        + Math.cos(node.phi * 4 - time * 0.95 + node.phase) * 0.07;
+                    const radius = 2.92 + harmonic + wake;
+                    const offset = i * 3;
+                    nodePositions[offset] = node.base.x * radius + heroPointer.x * wake * 0.34;
+                    nodePositions[offset + 1] = node.base.y * radius + heroPointer.y * wake * 0.3;
+                    nodePositions[offset + 2] = node.base.z * radius + wake * 0.24;
+                }
+
+                nodeGeometry.attributes.position.needsUpdate = true;
+
+                connectionPairs.forEach(([a, b], index) => {
+                    const lineOffset = index * 6;
+                    const aOffset = a * 3;
+                    const bOffset = b * 3;
+                    linePositions[lineOffset] = nodePositions[aOffset];
+                    linePositions[lineOffset + 1] = nodePositions[aOffset + 1];
+                    linePositions[lineOffset + 2] = nodePositions[aOffset + 2];
+                    linePositions[lineOffset + 3] = nodePositions[bOffset];
+                    linePositions[lineOffset + 4] = nodePositions[bOffset + 1];
+                    linePositions[lineOffset + 5] = nodePositions[bOffset + 2];
+                });
+                lineGeometry.attributes.position.needsUpdate = true;
+            }
 
             function animate3D() {
                 requestAnimationFrame(animate3D);
 
+                const time = performance.now() * 0.001;
                 const isDarkNow = document.documentElement.classList.contains('dark');
-                const targetColor = isDarkNow ? 0xffffff : 0xea580c;
-                material.color.setHex(targetColor);
-                pointsMaterial.color.setHex(targetColor);
+                const targetColor = isDarkNow ? 0xfb923c : 0xea580c;
 
-                sphere.rotation.x += 0.001;
-                sphere.rotation.y += 0.002;
-                points.rotation.x += 0.001;
-                points.rotation.y += 0.002;
+                shellMaterial.color.setHex(targetColor);
+                nodeMaterial.color.setHex(targetColor);
+                lineMaterial.color.setHex(targetColor);
+                tracerMaterial.color.setHex(targetColor);
+                tracerRingMaterial.color.setHex(targetColor);
+                harmonicMaterials.forEach(material => material.color.setHex(targetColor));
 
-                // Subtle parallax based on mouse
-                if (mouse.x !== -1000) {
-                    const targetX = (mouse.x / window.innerWidth) * 2 - 1;
-                    const targetY = -(mouse.y / window.innerHeight) * 2 + 1;
-                    sphere.position.x += (targetX * 0.5 - sphere.position.x) * 0.05;
-                    sphere.position.y += (targetY * 0.5 - sphere.position.y) * 0.05;
-                    points.position.x = sphere.position.x;
-                    points.position.y = sphere.position.y;
-                }
+                heroPointer.x += (heroPointer.targetX - heroPointer.x) * 0.095;
+                heroPointer.y += (heroPointer.targetY - heroPointer.y) * 0.095;
+                heroPointer.active += ((heroPointer.inside ? 1 : 0.28) - heroPointer.active) * 0.065;
+
+                const pointerDirection = new THREE.Vector3(
+                    heroPointer.x * 1.18,
+                    heroPointer.y * 0.98,
+                    1.35
+                ).normalize();
+
+                updateNeuralGeometry(time, pointerDirection);
+                harmonicLoops.forEach(loop => updateHarmonicLoop(loop, time));
+
+                neuralGroup.position.x += (-0.12 + heroPointer.x * 0.26 - neuralGroup.position.x) * 0.06;
+                neuralGroup.position.y += (0.03 + heroPointer.y * 0.2 - neuralGroup.position.y) * 0.06;
+                neuralGroup.rotation.x += (heroPointer.y * 0.2 - neuralGroup.rotation.x) * 0.035;
+                neuralGroup.rotation.y += 0.0038 + heroPointer.active * 0.002;
+                neuralGroup.rotation.z += (heroPointer.x * -0.12 - neuralGroup.rotation.z) * 0.035;
+
+                shell.rotation.x -= 0.0018;
+                shell.rotation.y += 0.0028;
+                harmonicGroup.rotation.y -= 0.002;
+                harmonicGroup.rotation.z += 0.0015;
+
+                shellMaterial.opacity = 0.26 + heroPointer.active * 0.16;
+                harmonicMaterials.forEach((material, index) => {
+                    material.opacity = 0.13 + heroPointer.active * (0.12 - index * 0.012);
+                });
+
+                const tracerRadius = 3.24 + heroPointer.active * 0.28;
+                tracer.position.set(
+                    pointerDirection.x * tracerRadius,
+                    pointerDirection.y * tracerRadius,
+                    pointerDirection.z * tracerRadius
+                );
+                tracer.scale.setScalar(0.75 + heroPointer.active * 1.55);
+                tracerRing.position.copy(tracer.position);
+                tracerRing.lookAt(camera.position);
+                tracerRing.scale.setScalar(0.9 + heroPointer.active * 1.3);
+
+                nodeMaterial.opacity = 0.72 + heroPointer.active * 0.24;
+                lineMaterial.opacity = 0.2 + heroPointer.active * 0.24;
+                tracerMaterial.opacity = 0.35 + heroPointer.active * 0.55;
+                tracerRingMaterial.opacity = 0.16 + heroPointer.active * 0.28;
 
                 renderer.render(scene, camera);
             }
             animate3D();
 
             window.addEventListener('resize', () => {
-                if (hero3d.clientWidth > 0) {
-                    camera.aspect = hero3d.clientWidth / hero3d.clientHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(hero3d.clientWidth, hero3d.clientHeight);
-                }
+                const nextSize = size();
+                camera.aspect = nextSize.width / nextSize.height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(nextSize.width, nextSize.height);
             });
+        } else if (hero3d) {
+            initHeroCanvasFallback();
         }
-        // 9. Hero Typewriter Effect
-        const textToType = "Researcher in AI & Structural Biology. Bridging algorithmic innovation and molecular biophysics for predictive discovery.";
-        const typeWriterElement = document.getElementById('hero-desc');
-        let typeIndex = 0;
-
-        function typeWriter() {
-            if (typeIndex < textToType.length) {
-                typeWriterElement.innerHTML = textToType.substring(0, typeIndex + 1) + '<span class="text-orange-500 dark:text-zinc-500 animate-pulse">_</span>';
-                typeIndex++;
-                setTimeout(typeWriter, 15 + Math.random() * 30);
-            } else {
-                typeWriterElement.innerHTML = textToType + '<span class="text-orange-500 dark:text-green-500 animate-pulse">_</span>';
-                setTimeout(() => {
-                    typeIndex = 0;
-                    typeWriter();
-                }, 2000);
-            }
-        }
-
-        // Start typing after a short delay
-        setTimeout(typeWriter, 800);
+        // 9. Old Hero Typewriter removed — replaced by bio typewriter above
     </script>
 </body>
 
