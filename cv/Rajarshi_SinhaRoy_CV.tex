@@ -32,6 +32,7 @@
 \newcommand{\sep}{\quad\textbar\quad}
 \newcommand{\entry}[3]{\textbf{#1}\\\textit{#2}\hfill\textit{#3}\par\vspace{8pt}}
 \newcommand{\pubhead}[1]{\textbf{#1}\par}
+\newcommand{\project}[3]{\item \textbf{#1} \textendash\ \textit{#2}.\ #3}
 
 \begin{document}
 
@@ -48,7 +49,7 @@
 
 % ---------- Research Profile ----------
 \section{Research Profile}
-{\fontsize{10.95}{13.8}\selectfont
+{\fontsize{10.95}{13.8}\selectfont\hyphenpenalty=10000\emergencystretch=1em
 PhD researcher in Informatics at the University of Leipzig (Germany), specializing in Artificial Intelligence
 for Drug Discovery. My research integrates deep learning, bioinformatics, and structural biology to design
 interpretable models that predict enzyme function, protein stability, and structure–function relationships.
@@ -63,6 +64,8 @@ and drug targets.\par}
 \textbf{Focus:} AI for mRNA delivery, Geometric Deep Learning, Protein Modeling, Brownian Dynamics, Molecular Dynamics
 and Computational Biology.\par
 \textbf{Supervisors:} Prof.\ Dr.\ Jens Meiler; Dr.\ Georg Künze.\par
+\textbf{Affiliations:} \href{https://scads.ai/}{ScaDS.AI Dresden/Leipzig} (Center for Scalable Data Analytics and Artificial Intelligence);
+\href{https://secai.org/}{SECAI} (School of Embedded Composite Artificial Intelligence).\par
 \vspace{9pt}
 {\large\bfseries M.Sc.\ in Computer Science}\\
 \textit{St.\ Xavier’s College (Autonomous), Kolkata, India}\hfill\textit{2020 – 2022}\par
@@ -74,7 +77,7 @@ CGPA 8.83 \enspace\textbullet\enspace Focus: Artificial Intelligence, Database S
 
 % ---------- Experience ----------
 \section{Research \& Professional Experience}
-\entry{PhD Researcher — Artificial Intelligence for Drug Discovery}{University of Leipzig, Germany}{Nov 2023 – Present}
+\entry{PhD Researcher — Artificial Intelligence for Drug Discovery}{University of Leipzig, Germany \textbullet\ ScaDS.AI Leipzig \textbullet\ SECAI}{Nov 2023 – Present}
 \begin{itemize}
   \item Collaborative project with \textbf{BioNTech} on enhancing mRNA delivery therapeutics through computational design.
   \item Developing \textbf{SE(3)-equivariant GNNs} for enzyme pH-optima prediction.
@@ -105,6 +108,27 @@ CGPA 8.83 \enspace\textbullet\enspace Focus: Artificial Intelligence, Database S
 \begin{itemize}
   \item Developed REST APIs and front-end integrations for a scalable data platform.
   \item Improved scalability by optimizing SQL queries and adding a data caching layer, reducing API latency.
+\end{itemize}
+
+% ---------- Research Projects ----------
+\section{Research Projects}
+\begin{itemize}[itemsep=2pt]
+  \project{AI-Guided All-Atom Protein Conformational Dynamics}{MambaDiff, SE(3) diffusion world model}{Spatio-temporal
+        framework coupling linear-time Mamba-2 state-space models with SE(3)-equivariant diffusion to generate time-ordered
+        all-atom trajectories from MD data; 10–30$\times$ faster than trajectory baselines (ScaDS.AI poster).}
+  \project{Computational mRNA Therapeutics}{collaborative project with BioNTech}{Multiscale molecular and Brownian dynamics
+        simulations of serum-protein corona formation on lipid nanoparticles to improve mRNA delivery efficiency and stability.}
+  \project{ML-Assisted Directed Evolution}{plastic-degrading enzymes}{MLDE models with protein-language-model ensembles
+        to co-optimize catalytic activity and thermal stability of PHL7 PET-hydrolase variants.}
+  \project{Flow Matching \& Backmapping}{deep learning for structural biology}{Flow-matching models that backmap
+        coarse-grained structures to all-atom resolution for lipids, proteins, DNA, and sugars.}
+  \project{MLDEx}{generalizability of ML-guided directed evolution across protein fitness landscapes}{Factorial
+        benchmark of 557,143 simulated MLDE campaigns over 16 fitness landscapes, 28 representations, and 8 regressors,
+        deriving protocol-level design principles.}
+  \project{BGC to Natural Product Using Deep Learning}{ATHANOR, Scientific Biosynthesis}{Deep learning models that map
+        biosynthetic gene clusters to the natural products they encode.}
+  \project{Deep Learning-Based Protein Design}{pH-dependent sequence generation}{EGNN pipeline generating de novo
+        protein sequences conditioned on target pH optima.}
 \end{itemize}
 
 % ---------- Publications ----------
