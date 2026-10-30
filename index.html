@@ -234,7 +234,9 @@
         .project-logo img {
             width: auto;
             max-width: 100%;
-            max-height: 200px;
+            height: 200px;
+            aspect-ratio: 562 / 481;
+            object-fit: contain;
         }
 
         .project-stat {
@@ -327,6 +329,38 @@
 
         .hero-photo-wrap {
             flex: 0 0 auto;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        @supports (overflow: clip) {
+            html,
+            body,
+            #hero {
+                overflow-x: clip;
+            }
+        }
+
+        /* Mobile navigation */
+        #mobile-menu a {
+            display: block;
+            padding: 0.85rem 0.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--nav-color);
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        #mobile-menu a:last-child {
+            border-bottom: none;
+        }
+
+        nav.menu-open,
+        .dark nav.menu-open {
+            background-color: var(--bg-color);
         }
 
         #hero-3d {
@@ -520,8 +554,8 @@
             <a href="#" class="text-lg font-bold text-zinc-900 dark:text-white hover-trigger transition-colors">
                 R. Sinha Roy
             </a>
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="nav-link hover-trigger">About</a>
+            <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="#hero" class="nav-link hover-trigger">About</a>
                 <a href="#projects" class="nav-link hover-trigger">Projects</a>
                 <a href="#trajectory" class="nav-link hover-trigger">Trajectory</a>
                 <a href="#publications" class="nav-link hover-trigger">Publications</a>
@@ -541,16 +575,27 @@
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
                 </button>
-                <button class="text-zinc-900 dark:text-white hover-trigger">
-                    <i data-lucide="menu" class="w-5 h-5"></i>
+                <button id="mobile-menu-toggle" class="p-2 text-zinc-900 dark:text-white hover-trigger"
+                    aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <i data-lucide="menu" class="w-5 h-5 menu-icon-open"></i>
+                    <i data-lucide="x" class="w-5 h-5 menu-icon-close hidden"></i>
                 </button>
             </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden max-w-7xl mx-auto mt-3 pb-2">
+            <a href="#hero">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#trajectory">Trajectory</a>
+            <a href="#publications">Publications</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <main>
         <!-- HERO SECTION -->
-        <section id="hero" class="min-h-screen flex flex-col justify-center px-6 md:px-20 lg:px-40 relative z-10 pt-20">
+        <section id="hero" class="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 xl:px-40 relative z-10 pt-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto w-full">
                 <div class="hero-copy order-2 lg:order-1">
                     <div
@@ -560,7 +605,7 @@
                     </div>
 
                     <h1
-                        class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 leading-[1.1] transition-colors">
+                        class="text-5xl md:text-7xl xl:text-8xl font-bold tracking-tighter text-zinc-900 dark:text-white mb-6 leading-[1.1] transition-colors">
                         Rajarshi<br><span class="text-orange-600 dark:text-zinc-500 transition-colors">Sinha Roy</span>
                     </h1>
 
@@ -604,7 +649,7 @@
                 </div>
 
                 <div class="hero-portrait-stage order-1 lg:order-2 flex justify-center lg:justify-end relative floating hover-trigger">
-                    <div class="hero-photo-wrap relative w-80 h-80 md:w-[26rem] md:h-[26rem]">
+                    <div class="hero-photo-wrap relative w-64 h-64 sm:w-80 sm:h-80 md:w-[26rem] md:h-[26rem]">
                         <!-- Dynamic 3D Hero Background -->
                         <div id="hero-3d" aria-hidden="true"
                             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[230%] h-[230%] z-0 pointer-events-none opacity-80 dark:opacity-90 transition-opacity">
@@ -622,7 +667,7 @@
             </div>
 
             <div
-                class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-orange-500 dark:text-zinc-500 opacity-60 transition-colors">
+                class="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 text-orange-500 dark:text-zinc-500 opacity-60 transition-colors">
                 <span class="text-xs font-mono uppercase tracking-widest">Scroll</span>
                 <div
                     class="w-[1px] h-12 bg-gradient-to-b from-orange-400 dark:from-zinc-500 to-transparent transition-colors">
@@ -634,13 +679,13 @@
 
 
         <!-- PROJECTS & INTERESTS -->
-        <section id="projects" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+        <section id="projects" class="py-24 px-6 md:px-12 lg:px-20 xl:px-40 relative z-10">
             <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                         02. Ongoing Projects & Interests</h2>
-                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
+                    <h3 class="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
                         Projects.</h3>
                 </div>
                 <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Active Research Focus</div>
@@ -648,9 +693,9 @@
 
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Featured: All-atom protein dynamics -->
-                <div class="glass-panel p-8 md:p-10 md:col-span-2 group">
+                <div class="glass-panel p-6 sm:p-8 md:p-10 md:col-span-2 group">
                     <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
-                        <div class="lg:col-span-3 flex gap-6">
+                        <div class="lg:col-span-3 flex flex-col sm:flex-row gap-4 sm:gap-6">
                             <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                                 <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                             </div>
@@ -698,8 +743,8 @@
                 </div>
 
                 <!-- Topic 1 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="dna" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -738,8 +783,8 @@
                 </div>
 
                 <!-- Topic 2 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="recycle" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -766,8 +811,8 @@
                 </div>
 
                 <!-- Topic 3 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="atom" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -794,8 +839,8 @@
                 </div>
 
                 <!-- Topic 4 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="trending-up" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -830,8 +875,8 @@
                 </div>
 
                 <!-- Topic 5 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="leaf" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -858,8 +903,8 @@
                 </div>
 
                 <!-- Topic 6 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
+                    <div class="tilt-content flex flex-col xl:flex-row gap-4 xl:gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="flask-conical" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
@@ -883,13 +928,13 @@
         </section>
 
         <!-- TRAJECTORY -->
-        <section id="trajectory" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+        <section id="trajectory" class="py-24 px-6 md:px-12 lg:px-20 xl:px-40 relative z-10">
             <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row justify-between items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                         03. Experience & Education</h2>
-                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
+                    <h3 class="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
                         Trajectory.</h3>
                 </div>
                 <div class="text-right text-zinc-500 text-sm font-mono hidden md:block">Academic & Career Journey</div>
@@ -902,7 +947,7 @@
                 </div>
 
                 <!-- PhD -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <div class="flex justify-between items-start mb-6">
                             <span
@@ -929,7 +974,7 @@
                 </div>
 
                 <!-- Master of Science -->
-                <div class="glass-panel p-8 tilt-card group mt-0 md:mt-32">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group mt-0 md:mt-32">
                     <div class="tilt-content">
                         <div class="flex justify-between items-start mb-6">
                             <span
@@ -952,7 +997,7 @@
                 </div>
 
                 <!-- Academic Researcher -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <div class="flex justify-between items-start mb-6">
                             <span
@@ -976,7 +1021,7 @@
                 </div>
 
                 <!-- Bachelor of Science -->
-                <div class="glass-panel p-8 tilt-card group mt-0 md:mt-32">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group mt-0 md:mt-32">
                     <div class="tilt-content">
                         <div class="flex justify-between items-start mb-6">
                             <span
@@ -1000,12 +1045,12 @@
         </section>
 
         <!-- PUBLICATIONS -->
-        <section id="publications" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+        <section id="publications" class="py-24 px-6 md:px-12 lg:px-20 xl:px-40 relative z-10">
             <div class="max-w-7xl mx-auto mb-12">
                 <h2
                     class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                     04. Selected Works</h2>
-                <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
+                <h3 class="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">
                     Publications.</h3>
             </div>
 
@@ -1109,20 +1154,20 @@
         </section>
 
         <!-- SKILLS MATRIX -->
-        <section id="skills" class="py-24 px-6 md:px-20 lg:px-40 relative z-10">
+        <section id="skills" class="py-24 px-6 md:px-12 lg:px-20 xl:px-40 relative z-10">
             <div class="max-w-7xl mx-auto mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
                 <div>
                     <h2
                         class="text-xs font-mono text-orange-600 dark:text-zinc-500 tracking-widest uppercase mb-4 transition-colors">
                         05. Capabilities</h2>
-                    <h3 class="text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">Technical
+                    <h3 class="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white tracking-tighter transition-colors">Technical
                         Skills.</h3>
                 </div>
             </div>
 
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Category 1 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="network" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Deep Learning & Generative AI</h4>
@@ -1133,7 +1178,7 @@
                 </div>
 
                 <!-- Category 2 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="box" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">AI Frameworks & Libraries</h4>
@@ -1144,7 +1189,7 @@
                 </div>
 
                 <!-- Category 3 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="dna" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Structural Biology & AI Tools</h4>
@@ -1155,7 +1200,7 @@
                 </div>
 
                 <!-- Category 4 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="activity" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">MD & Physics Simulation</h4>
@@ -1166,7 +1211,7 @@
                 </div>
 
                 <!-- Category 5 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="terminal" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Languages & Core Tech</h4>
@@ -1177,7 +1222,7 @@
                 </div>
 
                 <!-- Category 6 -->
-                <div class="glass-panel p-8 tilt-card group">
+                <div class="glass-panel p-6 sm:p-8 tilt-card group">
                     <div class="tilt-content">
                         <i data-lucide="microscope" class="w-8 h-8 text-orange-500 dark:text-zinc-500 mb-6 group-hover:text-orange-600 dark:group-hover:text-white transition-colors"></i>
                         <h4 class="text-lg font-semibold text-zinc-900 dark:text-white mb-4 transition-colors">Domain Expertise</h4>
@@ -1199,15 +1244,15 @@
 
 
         <!-- CONTACT -->
-        <section id="contact" class="py-24 px-6 md:px-20 lg:px-40 text-center relative z-10">
+        <section id="contact" class="py-24 px-6 md:px-12 lg:px-20 xl:px-40 text-center relative z-10">
             <div
-                class="inline-block glass-panel p-16 tilt-card relative overflow-hidden w-full max-w-3xl mx-auto border-t-4 border-t-orange-500 dark:border-t-white/50">
+                class="inline-block glass-panel p-8 sm:p-12 md:p-16 tilt-card relative overflow-hidden w-full max-w-3xl mx-auto border-t-4 border-t-orange-500 dark:border-t-white/50">
                 <div
                     class="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(234,88,12,0.05)_50%)] dark:bg-[linear-gradient(transparent_50%,rgba(255,255,255,0.02)_50%)] bg-[length:100%_4px] pointer-events-none transition-colors">
                 </div>
 
                 <h2
-                    class="text-5xl font-bold text-zinc-900 dark:text-white mb-8 tilt-content tracking-tighter transition-colors">
+                    class="text-4xl sm:text-5xl font-bold text-zinc-900 dark:text-white mb-8 tilt-content tracking-tighter transition-colors">
                     Get in Touch.</h2>
                 <p
                     class="text-zinc-600 dark:text-zinc-400 mb-12 tilt-content font-light text-lg max-w-xl mx-auto transition-colors">
@@ -1256,6 +1301,22 @@
     <!-- Interactive Scripts -->
     <script>
         lucide.createIcons();
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        function setMobileMenu(open) {
+            mobileMenu.classList.toggle('hidden', !open);
+            mobileMenu.closest('nav').classList.toggle('menu-open', open);
+            mobileMenuToggle.setAttribute('aria-expanded', String(open));
+            mobileMenuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            mobileMenuToggle.querySelector('.menu-icon-open').classList.toggle('hidden', open);
+            mobileMenuToggle.querySelector('.menu-icon-close').classList.toggle('hidden', !open);
+        }
+        mobileMenuToggle.addEventListener('click', () => setMobileMenu(mobileMenu.classList.contains('hidden')));
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMobileMenu(false)));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') setMobileMenu(false); });
+        window.matchMedia('(min-width: 768px)').addEventListener('change', e => { if (e.matches) setMobileMenu(false); });
 
         // Theme Toggle Logic
         const themeToggleBtns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
@@ -1900,12 +1961,32 @@
                 typeJobs(jobs, jobIndex + 1, 0);
             }
 
+            // Reserve the fully typed height so the buttons below don't jump while typing/looping
+            function reserveHeight() {
+                const measure = document.createElement('div');
+                measure.setAttribute('aria-hidden', 'true');
+                measure.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${container.clientWidth}px`;
+                measure.className = container.className;
+                measure.appendChild(source.content.cloneNode(true));
+                container.parentNode.appendChild(measure);
+                container.style.minHeight = `${measure.offsetHeight}px`;
+                measure.remove();
+            }
+
+            let resizeTimer = null;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(reserveHeight, 150);
+            });
+
             function startTyping() {
                 clearTimeout(typeTimer);
+                reserveHeight();
                 const jobs = buildFrame();
                 typeJobs(jobs);
             }
 
+            reserveHeight();
             typeTimer = setTimeout(startTyping, 500);
         })();
 
