@@ -169,6 +169,123 @@
             box-shadow: 0 10px 40px -10px rgba(255, 255, 255, 0.05);
         }
 
+        /* Project figures */
+        .project-figure figcaption {
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #71717a;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-thumb {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #ffffff;
+            border: 1px solid var(--panel-border);
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-thumb:hover {
+            border-color: var(--panel-border-hover);
+        }
+
+        .project-thumb img {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        a.project-thumb:hover img {
+            transform: scale(1.03);
+        }
+
+        .project-thumb > span {
+            position: absolute;
+            left: 6px;
+            bottom: 6px;
+            padding: 1px 7px;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #3f3f46;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .project-tile img {
+            aspect-ratio: 1;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .project-thumb.project-poster img {
+            aspect-ratio: 1400 / 1980;
+        }
+
+        .project-logo {
+            display: flex;
+            justify-content: center;
+            padding: 1.25rem;
+        }
+
+        .project-logo img {
+            width: auto;
+            max-width: 100%;
+            max-height: 200px;
+        }
+
+        .project-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--panel-border);
+        }
+
+        .project-stat-value {
+            font-size: 1.35rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #ea580c;
+        }
+
+        .dark .project-stat-value {
+            color: #ffffff;
+        }
+
+        .project-stat-label {
+            font-size: 0.7rem;
+            line-height: 1.3;
+            color: #71717a;
+        }
+
+        .project-abstract summary {
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #ea580c;
+        }
+
+        .dark .project-abstract summary {
+            color: #a1a1aa;
+        }
+
+        .project-abstract p {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            font-weight: 300;
+            color: #52525b;
+        }
+
+        .dark .project-abstract p {
+            color: #a1a1aa;
+        }
+
         /* 3D Tilt Effect */
         .tilt-card {
             transform-style: preserve-3d;
@@ -526,7 +643,7 @@
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="dna" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
-                        <div class="flex-grow">
+                        <div class="flex-grow min-w-0">
                             <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Computational mRNA Therapeutics</h4>
                             <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Collaborative Project with BioNTech</p>
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
@@ -539,6 +656,23 @@
                                     <span>Optimized computational design frameworks to enhance the delivery efficiency and stability of mRNA therapeutics.</span>
                                 </li>
                             </ul>
+                            <figure class="project-figure mt-6">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <a href="assets/projects/lnp-corona-c3.webp" target="_blank" class="project-thumb project-tile">
+                                        <img src="assets/projects/lnp-corona-c3.webp" alt="LNP with complement C3 bound at the surface" width="640" height="489" loading="lazy" decoding="async">
+                                        <span>C3</span>
+                                    </a>
+                                    <a href="assets/projects/lnp-corona-iga.webp" target="_blank" class="project-thumb project-tile">
+                                        <img src="assets/projects/lnp-corona-iga.webp" alt="LNP with IgA bound at the surface" width="640" height="666" loading="lazy" decoding="async">
+                                        <span>IgA</span>
+                                    </a>
+                                    <a href="assets/projects/lnp-corona-igm-c3.webp" target="_blank" class="project-thumb project-tile">
+                                        <img src="assets/projects/lnp-corona-igm-c3.webp" alt="LNP with IgM and C3 bound at the surface" width="640" height="620" loading="lazy" decoding="async">
+                                        <span>IgM + C3</span>
+                                    </a>
+                                </div>
+                                <figcaption>Brownian-dynamics snapshots of serum-protein corona formation on PEGylated LNPs.</figcaption>
+                            </figure>
                         </div>
                     </div>
                 </div>
@@ -549,7 +683,7 @@
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="recycle" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
-                        <div class="flex-grow">
+                        <div class="flex-grow min-w-0">
                             <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">ML-Assisted Directed Evolution</h4>
                             <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Plastic-Degrading Enzymes</p>
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
@@ -562,17 +696,72 @@
                                     <span>Engineered fitness functions that improved the alignment between in silico sequence predictions and experimental wet-lab outcomes.</span>
                                 </li>
                             </ul>
+                            <figure class="project-figure mt-6">
+                                <a href="assets/projects/pet-mlde.webp" target="_blank" class="project-thumb">
+                                    <img src="assets/projects/pet-mlde.webp" alt="Protein language model ensemble guiding directed evolution of the PET-degrading enzyme PHL7 across a fitness landscape" width="455" height="359" loading="lazy" decoding="async">
+                                </a>
+                            </figure>
                         </div>
                     </div>
                 </div>
 
-                <!-- Topic 3 -->
+                <!-- Topic 3 (featured): All-atom protein dynamics -->
+                <div class="glass-panel p-8 md:p-10 md:col-span-2 group">
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
+                        <div class="lg:col-span-3 flex gap-6">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                                <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <p class="text-xs font-mono uppercase tracking-widest text-orange-600 dark:text-zinc-400 mb-3 transition-colors">Featured &middot; SE(3) Diffusion World Model</p>
+                                <h4 class="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white mb-2 transition-colors">AI-Guided All-Atom Protein Conformational Dynamics</h4>
+                                <p class="text-sm font-mono text-orange-600 dark:text-zinc-400 mb-6 transition-colors">MambaDiff: A Spatio-Temporal SE(3) Diffusion Framework for Protein Conformational Trajectory Modeling</p>
+                                <p class="text-sm md:text-base text-zinc-600 dark:text-zinc-400 font-light leading-relaxed mb-6">
+                                    MambaDiff is a biophysical transition model that learns macromolecular conformational dynamics directly from molecular dynamics trajectories by coupling linear-time Mamba-2 state-space models with SE(3)-equivariant diffusion.
+                                </p>
+                                <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                        <span>Dynamical history is tracked by a recurrent state-space model across time, while geometric attention (Flash IPA) stays local within each snapshot.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                        <span>Mamba-2 compresses conformational memory into a fixed-size hidden state, so cost scales linearly with trajectory length; physical transition time enters as a deterministic signal.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                        <span>Generates time-ordered, all-atom trajectories autoregressively, reproducing reference MD free-energy surfaces and flexibility profiles on ATLAS.</span>
+                                    </li>
+                                </ul>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8">
+                                    <div class="project-stat"><span class="project-stat-value">10–30×</span><span class="project-stat-label">faster than trajectory baselines</span></div>
+                                    <div class="project-stat"><span class="project-stat-value">1,000+</span><span class="project-stat-label">frames at fixed memory</span></div>
+                                    <div class="project-stat"><span class="project-stat-value">O(T)</span><span class="project-stat-label">linear in trajectory length</span></div>
+                                </div>
+                                <div class="flex flex-wrap gap-3 mt-8">
+                                    <a href="assets/projects/MambaDiff_poster_SCADS_AI.pdf" target="_blank" rel="noopener"
+                                        class="hover-trigger px-6 py-3 bg-orange-600 text-white dark:bg-white dark:text-black rounded-full font-medium text-sm hover:bg-orange-700 dark:hover:bg-zinc-200 transition-colors inline-flex items-center gap-2">
+                                        <i data-lucide="file-text" class="w-4 h-4"></i> View Poster (PDF)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <figure class="lg:col-span-2 project-figure">
+                            <a href="assets/projects/MambaDiff_poster_SCADS_AI.pdf" target="_blank" rel="noopener" class="project-thumb project-poster hover-trigger" aria-label="Open the MambaDiff poster (PDF)">
+                                <img src="assets/projects/mambadiff-poster.webp" alt="ScaDS.AI poster: AI Guided All-Atom Protein Conformational Dynamics (MambaDiff)" width="1400" height="1980" loading="lazy" decoding="async">
+                            </a>
+                            <figcaption>Poster &middot; ScaDS.AI Dresden/Leipzig &mdash; R. SinhaRoy, J. Meiler, G. Künze</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Topic 4 -->
                 <div class="glass-panel p-8 tilt-card group">
                     <div class="tilt-content flex gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                             <i data-lucide="atom" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
-                        <div class="flex-grow">
+                        <div class="flex-grow min-w-0">
                             <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Flow Matching & Backmapping</h4>
                             <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Deep Learning for Structural Biology</p>
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
@@ -585,29 +774,11 @@
                                     <span>Enabled high-fidelity structural reconstruction across diverse biomolecules, including lipids, proteins, DNA, and sugars.</span>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Topic 4 -->
-                <div class="glass-panel p-8 tilt-card group">
-                    <div class="tilt-content flex gap-6">
-                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
-                            <i data-lucide="cpu" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
-                        </div>
-                        <div class="flex-grow">
-                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">MD Surrogate Modeling</h4>
-                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Physics-Aware Architecture Search</p>
-                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Designed a staged, physics-aware architecture search and optimization framework to serve as a surrogate model for molecular dynamics.</span>
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Accelerated simulation workflows by embedding physical constraints directly into neural network architectures.</span>
-                                </li>
-                            </ul>
+                            <figure class="project-figure mt-6">
+                                <a href="assets/projects/flow-matching-backmapping.webp" target="_blank" class="project-thumb">
+                                    <img src="assets/projects/flow-matching-backmapping.webp" alt="Flow matching backmaps a coarse-grained lipid system to an all-atom system" width="612" height="194" loading="lazy" decoding="async">
+                                </a>
+                            </figure>
                         </div>
                     </div>
                 </div>
@@ -616,26 +787,67 @@
                 <div class="glass-panel p-8 tilt-card group">
                     <div class="tilt-content flex gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
-                            <i data-lucide="brain" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                            <i data-lucide="trending-up" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
                         </div>
-                        <div class="flex-grow">
-                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">SE(3) Diffusion World Models</h4>
-                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">Protein Conformational Dynamics</p>
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">Evaluating the Generalizability of Machine-Learning-Guided Directed Evolution Across Protein Fitness Landscapes</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">MLDEx Benchmark</p>
                             <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Engineered a reference-conditioned SE(3) diffusion world model to learn and predict local protein conformational dynamics.</span>
+                                    <span>Factorial benchmark of 557,143 simulated MLDE campaigns across 16 experimental protein fitness landscapes (28 representations, 8 regressors, 3 acquisition rules, 4 initial-set and 4 batch sizes).</span>
                                 </li>
                                 <li class="flex items-start gap-2">
                                     <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
-                                    <span>Generated accurate rollouts of complex structural transitions directly from raw molecular dynamics trajectories.</span>
+                                    <span>ML guidance improved success over random screening 2.2–2.8-fold with small initial sets; greedy acquisition beat expected improvement on 14 of 16 landscapes.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Representation–model rankings did not transfer across landscapes, motivating landscape-aware configuration selection for uncharacterized proteins.</span>
                                 </li>
                             </ul>
+                            <figure class="project-figure mt-6">
+                                <a href="assets/projects/mldex-overview.webp" target="_blank" class="project-thumb">
+                                    <img src="assets/projects/mldex-overview.webp" alt="MLDEx workflow: 16 datasets, protein language model representations, regressor models, and the iterative predict–select–screen–update directed evolution loop" width="1139" height="508" loading="lazy" decoding="async">
+                                </a>
+                            </figure>
+                            <details class="project-abstract mt-4">
+                                <summary class="hover-trigger">Read abstract</summary>
+                                <p>Machine-learning-guided directed evolution (MLDE) can accelerate protein engineering by prioritizing promising variants, but campaign performance depends on multiple interrelated design choices. We introduce MLDEx, a factorial benchmark comprising 557,143 simulated MLDE campaigns across 16 experimental protein fitness landscapes, systematically varying 28 representations, 8 regression models, 3 acquisition rules, 4 initial set sizes, and 4 batch sizes. ML guidance improved success over random screening by 2.2–2.8-fold when initial training sets were small, with gains diminishing as initial set size increased. At matched total assay budgets, zero-shot screening achieved 56.2% success compared with 44.6% for ML-guided campaigns at 200 assays, with comparable success rates at larger budgets, highlighting the importance of initial-set design. The benchmark identifies actionable protocol-level principles: greedy acquisition outperformed expected improvement on 14 of 16 landscapes, while smaller batches improved early-stage success on all 16 landscapes. In a dedicated experiment without the plateau rule, larger batches became advantageous beyond approximately 220 acquired assays, demonstrating the importance of adapting campaign design to the available assay budget. Representation–model rankings varied more across landscapes: a combination selected using 15 landscapes performed 13.3 percentage points below its corpus-wide performance on the held-out landscape, and none of three alternative selection criteria significantly improved held-out performance. These results show how MLDEx can separate protocol-level effects that held across landscapes from configuration rankings that did not, and they motivate landscape-aware configuration selection for previously uncharacterized proteins.</p>
+                            </details>
                         </div>
                     </div>
                 </div>
 
                 <!-- Topic 6 -->
+                <div class="glass-panel p-8 tilt-card group">
+                    <div class="tilt-content flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
+                            <i data-lucide="leaf" class="w-6 h-6 text-orange-500 dark:text-zinc-500 group-hover:text-white dark:group-hover:text-black transition-colors"></i>
+                        </div>
+                        <div class="flex-grow min-w-0">
+                            <h4 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2 transition-colors">BGC to Natural Product Using Deep Learning</h4>
+                            <p class="text-xs font-mono text-orange-600 dark:text-zinc-400 mb-4 transition-colors">ATHANOR &middot; Scientific Biosynthesis</p>
+                            <ul class="text-sm text-zinc-600 dark:text-zinc-500 space-y-3 font-light leading-relaxed">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Developing deep learning models that map biosynthetic gene clusters (BGCs) to the natural products they encode.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-orange-500 dark:text-zinc-400 mt-1.5 flex-shrink-0">•</span>
+                                    <span>Linking genomic biosynthetic potential to chemical structure to prioritize novel bioactive compounds for discovery.</span>
+                                </li>
+                            </ul>
+                            <figure class="project-figure mt-6">
+                                <div class="project-thumb project-logo">
+                                    <img src="assets/projects/athanor-logo.webp" alt="ATHANOR Scientific Biosynthesis logo" width="562" height="481" loading="lazy" decoding="async">
+                                </div>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic 7 -->
                 <div class="glass-panel p-8 tilt-card group">
                     <div class="tilt-content flex gap-6">
                         <div class="flex-shrink-0 w-12 h-12 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center bg-orange-50 dark:bg-zinc-900 group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
@@ -788,7 +1000,7 @@
 
             <div class="max-w-7xl mx-auto space-y-6">
                 <!-- Paper 1 -->
-                <a href="https://doi.org/10.64898/2026.01.18.700076" target="_blank"
+                <a href="https://doi.org/10.1021/acs.jcim.6c01482" target="_blank"
                     class="block group hover-trigger glass-panel p-6 md:p-8 transition-all duration-300">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div class="flex-grow">
@@ -798,11 +1010,11 @@
                             <p class="text-sm text-zinc-600 dark:text-zinc-500 font-light transition-colors"><strong
                                     class="text-orange-600 dark:text-zinc-300 font-medium transition-colors">R.
                                     SinhaRoy</strong>, C. Clauss, I. Ivanikov, and G. Künze &bull; <span
-                                    class="italic text-zinc-500 dark:text-zinc-400">bioRxiv (2026)</span></p>
+                                    class="italic text-zinc-500 dark:text-zinc-400">Journal of Chemical Information and Modeling (2026)</span></p>
                         </div>
                         <div class="flex items-center gap-4 flex-shrink-0">
                             <span
-                                class="text-xs font-mono text-orange-600 dark:text-zinc-400 bg-orange-50 dark:bg-white/5 border border-orange-200 dark:border-white/10 px-3 py-1.5 rounded-full group-hover:border-orange-400 dark:group-hover:border-white/30 transition-colors">Preprint</span>
+                                class="text-xs font-mono text-orange-600 dark:text-zinc-400 bg-orange-50 dark:bg-white/5 border border-orange-200 dark:border-white/10 px-3 py-1.5 rounded-full group-hover:border-orange-400 dark:group-hover:border-white/30 transition-colors">Peer-Reviewed</span>
                             <div
                                 class="w-10 h-10 rounded-full border border-orange-200 dark:border-zinc-700 flex justify-center items-center group-hover:bg-orange-600 dark:group-hover:bg-white transition-colors">
                                 <i data-lucide="arrow-right"
@@ -965,7 +1177,7 @@
                             </li>
                             <li class="flex items-start gap-2">
                                 <span class="text-orange-500 dark:text-zinc-400 mt-1 flex-shrink-0">&bull;</span>
-                                <span><strong class="font-medium text-zinc-800 dark:text-zinc-300">Biophysics & Computational Biology:</strong> Structural Bioinformatics, Molecular Dynamics (MD) Surrogate Modeling, De Novo Protein Design, Enzyme Kinetics & Directed Evolution.</span>
+                                <span><strong class="font-medium text-zinc-800 dark:text-zinc-300">Biophysics & Computational Biology:</strong> Structural Bioinformatics, Molecular Dynamics (MD), De Novo Protein Design, Enzyme Kinetics & Directed Evolution.</span>
                             </li>
                         </ul>
                     </div>

@@ -1,0 +1,158 @@
+% Curriculum Vitae — Rajarshi SinhaRoy
+% Build: pdflatex Rajarshi_SinhaRoy_CV.tex   (needs fontawesome5 + tex-gyre; both on Overleaf)
+% signature.jpg is kept locally only (gitignored).
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{tgheros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+\definecolor{rulegray}{gray}{0.55}
+\definecolor{doigray}{gray}{0.45}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\titleformat{\section}{\Large\scshape}{}{0pt}{}[{\color{rulegray}\titlerule[0.4pt]}]
+\titlespacing*{\section}{0pt}{8pt}{19pt}
+
+\setlist[itemize]{leftmargin=1.2em,label={\scriptsize\textbullet},itemsep=0pt,parsep=0pt,topsep=4pt}
+
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{\textcolor{doigray}{doi:\nolinkurl{#1}}}}
+\newcommand{\sep}{\quad\textbar\quad}
+\newcommand{\entry}[3]{\textbf{#1}\\\textit{#2}\hfill\textit{#3}\par\vspace{8pt}}
+\newcommand{\pubhead}[1]{\textbf{#1}\par}
+
+\begin{document}
+
+% ---------- Header ----------
+\begin{center}
+  {\LARGE\bfseries Rajarshi SinhaRoy}\par\vspace{5pt}
+  {\small
+  \faMapMarker*\ Leipzig, Germany\sep
+  \faEnvelope\ \href{mailto:sinharoy.rajarshi@uni-leipzig.de}{sinharoy.rajarshi@uni-leipzig.de}\par\vspace{3pt}
+  \faLinkedin\ \href{https://www.linkedin.com/in/rajarshi-sinharoy}{LinkedIn}\sep
+  \faGithub\ \href{https://github.com/Zadak-H}{GitHub}\sep
+  \faGraduationCap\ \href{https://scholar.google.com/citations?user=CQJhB0IAAAAJ}{Google Scholar}}
+\end{center}
+
+% ---------- Research Profile ----------
+\section{Research Profile}
+{\fontsize{10.95}{13.8}\selectfont
+PhD researcher in Informatics at the University of Leipzig (Germany), specializing in Artificial Intelligence
+for Drug Discovery. My research integrates deep learning, bioinformatics, and structural biology to design
+interpretable models that predict enzyme function, protein stability, and structure–function relationships.
+With expertise in geometric deep learning, molecular simulation, and biomolecular modeling, I aim to bridge
+algorithmic innovation and molecular biophysics for predictive, explainable discovery of therapeutic enzymes
+and drug targets.\par}
+
+% ---------- Education ----------
+\section{Education}
+{\large\bfseries PhD in Informatics}\\
+\textit{Institute of Drug Discovery, University of Leipzig, Germany}\hfill\textit{Nov 2023 – Present}\par
+\textbf{Focus:} AI for mRNA delivery, Geometric Deep Learning, Protein Modeling, Brownian Dynamics, Molecular Dynamics
+and Computational Biology.\par
+\textbf{Supervisors:} Prof.\ Dr.\ Jens Meiler; Dr.\ Georg Künze.\par
+\vspace{9pt}
+{\large\bfseries M.Sc.\ in Computer Science}\\
+\textit{St.\ Xavier’s College (Autonomous), Kolkata, India}\hfill\textit{2020 – 2022}\par
+CGPA 8.36 \enspace\textbullet\enspace Dissertation: \textit{Optimization in Image Processing and Deep Learning.}\par
+\vspace{9pt}
+{\large\bfseries B.Sc.\ in Computer Science}\\
+\textit{Government General Degree College, Singur, India}\hfill\textit{2017 – 2020}\par
+CGPA 8.83 \enspace\textbullet\enspace Focus: Artificial Intelligence, Database Systems, Applied Computing.\par
+
+% ---------- Experience ----------
+\section{Research \& Professional Experience}
+\entry{PhD Researcher — Artificial Intelligence for Drug Discovery}{University of Leipzig, Germany}{Nov 2023 – Present}
+\begin{itemize}
+  \item Collaborative project with \textbf{BioNTech} on enhancing mRNA delivery therapeutics through computational design.
+  \item Developing \textbf{SE(3)-equivariant GNNs} for enzyme pH-optima prediction.
+  \item Designing \textbf{MPNN–Transformer} architectures for pH-dependent protein sequence generation.
+  \item Conducting molecular-dynamics simulations and bioinformatics analyses for interpretable AI models.
+\end{itemize}
+\vspace{2pt}
+\entry{Academic Researcher — Bioinformatics and AI Lab}{Kolkata, India}{2021 – 2023}
+\begin{itemize}
+  \item Designed hybrid \textbf{GAN + DCNN} architectures for MRI-based Alzheimer’s progression prediction.
+  \item Built preprocessing, augmentation, and evaluation pipelines ensuring reproducibility.
+\end{itemize}
+\vspace{2pt}
+\entry{Teaching Assistant — Computer Science Department}{Techno Main Salt Lake, India}{Jan 2023 – Oct 2023}
+\begin{itemize}
+  \item Assisted undergraduate courses in Computer Science and Data Analytics.
+  \item Conducted lab tutorials and supervised ML/AI-based student projects.
+\end{itemize}
+\vspace{2pt}
+\entry{Developer Intern — EasyWay Technologies}{Kolkata, India}{Jan 2022 – Apr 2022}
+\begin{itemize}
+  \item Developed and deployed backend services (PHP, MySQL) and data visualization modules for a client-facing
+        analytics platform.
+  \item Implemented analytics automation and optimized API performance.
+\end{itemize}
+\vspace{2pt}
+\entry{Software Developer Intern — Unique Start}{Kolkata, India}{May 2021 – Oct 2021}
+\begin{itemize}
+  \item Developed REST APIs and front-end integrations for a scalable data platform.
+  \item Improved scalability by optimizing SQL queries and adding a data caching layer, reducing API latency.
+\end{itemize}
+
+% ---------- Publications ----------
+\section{Publications \& Conferences}
+\pubhead{Peer-Reviewed Publications}
+\begin{itemize}
+  \item R. SinhaRoy, C. Clauss, I. Ivanikov, and G. Künze, “Predicting Enzyme pH Optima from Structure Using Equivariant
+        Graph Neural Networks,” \textit{Journal of Chemical Information and Modeling}, 66(16), 9858–9873, 2026.
+        \doi{10.1021/acs.jcim.6c01482}.
+  \item R. SinhaRoy and A. Sen, “A Hybrid Deep Learning Framework to Predict Alzheimer’s Disease Progression Using
+        GAN and DCNN,” \textit{Arabian Journal for Science and Engineering}, 2023. \doi{10.1007/s13369-023-07973-9}.
+  \item R. Sinharoy and A. Sen, “Cardiovascular Disease Prediction Using Ensemble Classification Algorithm in Machine
+        Learning,” \textit{International Journal of Soft Computing}, 2022. \doi{10.21917/ijsc.2022.0366}.
+  \item R. Sinharoy and S. Sarkhel, “Air Quality Index Prediction in Realtime Using SVM,” \textit{International Journal of Innovative
+        Research in Physics}, 2021. \doi{10.15864/ijiip.3106}.
+  \item R. SinhaRoy, “A Study on the Journey of NLP Models: From Symbolic NLP to BERT,” \textit{IJSRCSEIT}, 2021.
+        \doi{10.32628/CSEIT217688}.
+\end{itemize}
+\vspace{4pt}
+\pubhead{Conference Presentations}
+\begin{itemize}
+  \item R. SinhaRoy, “pHoptNN: Predicting Enzyme \textit{pH}-Optima from Structure Using Equivariant Graph Neural Networks,”
+        Oral Presentation, \textit{EUROSETTACON 2025}.
+  \item S. Sen, S. Sonali, R. SinhaRoy et al., “Overlapped Fingerprint Separation Using Graph-Based Model,” in \textit{IEEE
+        Silchar Subsection Conference (SILCON)}, 2022. \doi{10.1109/SILCON55242.2022.10028828}.
+\end{itemize}
+
+% ---------- Skills ----------
+\section{Technical Skills}
+{\linespread{1.18}\selectfont
+\textbf{Programming:} Python • C/C++ • Java • SQL • MATLAB • PHP • HTML/CSS/JS • Git\par
+\textbf{ML/DL:} TensorFlow • Keras • PyTorch • GNNs • CNNs • GANs • MPNNs • Diffusion Models\par
+\textbf{Bio-Software:} RFDiffusion • ProteinMPNN • GROMACS • AMBER • VMD • AlphaFold • PyMOL\par
+\textbf{Research Areas:} Computational Biology • Bioinformatics • Data Mining • Molecular Dynamics\par}
+
+% ---------- Signature ----------
+\vfill
+\begin{minipage}[b]{0.5\textwidth}
+October 30, 2026\\
+Leipzig, DE
+\end{minipage}%
+\hfill
+\begin{minipage}[b]{0.25\textwidth}
+\raggedleft
+\IfFileExists{signature.jpg}{\includegraphics[width=\linewidth]{signature.jpg}\\[-4pt]}{\vspace{1.2cm}}
+\rule{\linewidth}{0.4pt}\\
+Rajarshi SinhaRoy
+\end{minipage}
+\vspace{6.15cm}
+
+\end{document}
